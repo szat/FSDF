@@ -1,4 +1,6 @@
-﻿  glad.c
+﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  glad.c
+cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
   main.cpp
 c:\libigl-master\include\igl\EPS.h(16): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\libigl-master\include\igl\EPS.h(17): warning C4305: 'initializing': truncation from 'double' to 'float'
@@ -67,8 +69,8 @@ c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(726): warning C4244: 'argume
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(764): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(859): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(866): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-main.cpp(38): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-main.cpp(118): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+main.cpp(39): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+main.cpp(119): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
 c:\libigl-master\include\igl\ortho.cpp(21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   c:\libigl-master\include\igl\opengl\ViewerCore.cpp(140): note: see reference to function template instantiation 'void igl::ortho<Eigen::Matrix<float,4,4,0,4,4>>(const float,const float,const float,const float,const float,const float,Eigen::PlainObjectBase<Eigen::Matrix<float,4,4,0,4,4>> &)' being compiled
 c:\libigl-master\include\igl\ortho.cpp(22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -83,7 +85,7 @@ c:\libigl-master\include\igl\two_axis_valuator_fixed_up.cpp(38): warning C4244: 
 c:\libigl-master\include\igl\snap_to_canonical_view_quat.cpp(106): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
   c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(876): note: see reference to function template instantiation 'bool igl::snap_to_canonical_view_quat<float,float>(const Eigen::Quaternion<float,0> &,const double,Eigen::Quaternion<float,0> &)' being compiled
 c:\libigl-master\include\igl\readDMAT.cpp(106): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  main.cpp(68): note: see reference to function template instantiation 'bool igl::readDMAT<Eigen::Matrix<int,-1,1,0,-1,1>>(const std::string,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,1,0,-1,1>> &)' being compiled
+  main.cpp(69): note: see reference to function template instantiation 'bool igl::readDMAT<Eigen::Matrix<int,-1,1,0,-1,1>>(const std::string,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,1,0,-1,1>> &)' being compiled
 c:\libigl-master\include\igl\readDMAT.cpp(125): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 c:\libigl-master\include\igl\per_face_normals.cpp(21): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
           with
@@ -158,7 +160,7 @@ c:\libigl-master\include\igl\cotmatrix.cpp(29): warning C4244: 'initializing': c
           [
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
           ]
-  main.cpp(33): note: see reference to function template instantiation 'bool igl::harmonic<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,1,0,-1,1>,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,1,0,-1,1>> &,const Eigen::MatrixBase<Derived> &,const int,Eigen::PlainObjectBase<Derived> &)' being compiled
+  main.cpp(34): note: see reference to function template instantiation 'bool igl::harmonic<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,1,0,-1,1>,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,1,0,-1,1>> &,const Eigen::MatrixBase<Derived> &,const int,Eigen::PlainObjectBase<Derived> &)' being compiled
           with
           [
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
@@ -213,7 +215,7 @@ c:\libigl-master\include\igl\colon.cpp(20): warning C4244: 'initializing': conve
               H=Eigen::Index,
               S=int
           ]
-  main.cpp(69): note: see reference to function template instantiation 'void igl::colon<int,Eigen::Index,int>(const L,const H,Eigen::Matrix<int,-1,1,0,-1,1> &)' being compiled
+  main.cpp(70): note: see reference to function template instantiation 'void igl::colon<int,Eigen::Index,int>(const L,const H,Eigen::Matrix<int,-1,1,0,-1,1> &)' being compiled
           with
           [
               L=int,
@@ -597,7 +599,10 @@ c:\libigl-master\include\igl\slice.cpp(187): warning C4244: 'initializing': conv
           [
               Derived=Eigen::Matrix<int,-1,1,0,-1,1>
           ]
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
   Generating code
-  All 20193 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 20193 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    89 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe
