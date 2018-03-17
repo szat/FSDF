@@ -1,0 +1,77 @@
+﻿  stdafx.cpp
+  FSDF.cpp
+c:\libigl-master\libigl-master\include\igl\opengl\bind_vertex_attrib_array.cpp(21): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLint', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\meshgl.cpp(144): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\meshgl.cpp(152): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\meshgl.cpp(157): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
+c:\libigl-master\libigl-master\include\igl\material_colors.h(16): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(17): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(17): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(18): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(18): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(23): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(23): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(24): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(24): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(25): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(25): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(26): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(26): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(39): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(39): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(40): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(43): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(43): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(44): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(44): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(45): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\libigl-master\include\igl\material_colors.h(45): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(47): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(48): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(49): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(50): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(51): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(52): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(54): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\material_colors.h(55): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\libigl-master\include\igl\opengl\viewerdata.cpp(263): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewerdata.cpp(312): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewerdata.cpp(333): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewerdata.cpp(650): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewerdata.cpp(651): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(67): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(121): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(121): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(139): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(144): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(145): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(263): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'unsigned int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(264): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'unsigned int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\viewercore.cpp(300): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\writeoff.cpp(70): warning C4003: not enough actual parameters for macro 'RGB'
+c:\libigl-master\libigl-master\include\igl\file_dialog_open.cpp(50): error C2440: '=': cannot convert from 'char *' to 'LPWSTR'
+  c:\libigl-master\libigl-master\include\igl\file_dialog_open.cpp(50): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\libigl-master\libigl-master\include\igl\file_dialog_open.cpp(55): error C2440: '=': cannot convert from 'const char [5]' to 'LPCWSTR'
+  c:\libigl-master\libigl-master\include\igl\file_dialog_open.cpp(55): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\libigl-master\libigl-master\include\igl\file_dialog_save.cpp(49): error C2440: '=': cannot convert from 'char *' to 'LPWSTR'
+  c:\libigl-master\libigl-master\include\igl\file_dialog_save.cpp(49): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\libigl-master\libigl-master\include\igl\file_dialog_save.cpp(54): error C2440: '=': cannot convert from 'const char [1]' to 'LPCWSTR'
+  c:\libigl-master\libigl-master\include\igl\file_dialog_save.cpp(54): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\libigl-master\libigl-master\include\igl\eps.h(16): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\libigl-master\libigl-master\include\igl\eps.h(17): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(94): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(95): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(112): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(158): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(617): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(710): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(725): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(726): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(764): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(859): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\libigl-master\include\igl\opengl\glfw\viewer.cpp(866): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data

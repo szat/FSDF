@@ -1,0 +1,603 @@
+﻿  glad.c
+  main.cpp
+c:\libigl-master\include\igl\EPS.h(16): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\libigl-master\include\igl\EPS.h(17): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\libigl-master\include\igl\opengl\bind_vertex_attrib_array.cpp(21): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLint', possible loss of data
+c:\libigl-master\include\igl\opengl\MeshGL.cpp(144): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
+c:\libigl-master\include\igl\opengl\MeshGL.cpp(152): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
+c:\libigl-master\include\igl\opengl\MeshGL.cpp(157): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
+c:\libigl-master\include\igl\opengl\../material_colors.h(16): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(17): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(17): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(18): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(18): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(23): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(23): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(24): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(24): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(25): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(25): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(26): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(26): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(39): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(39): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(40): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(43): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(43): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(44): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(44): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(45): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\libigl-master\include\igl\opengl\../material_colors.h(45): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(47): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(48): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(49): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(50): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(51): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(52): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(54): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\../material_colors.h(55): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\libigl-master\include\igl\opengl\ViewerData.cpp(263): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerData.cpp(312): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerData.cpp(333): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerData.cpp(650): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerData.cpp(651): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(67): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(121): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(121): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(139): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(144): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(145): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(263): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'unsigned int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(264): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'unsigned int', possible loss of data
+c:\libigl-master\include\igl\opengl\ViewerCore.cpp(300): warning C4244: 'argument': conversion from 'unsigned int' to 'const float', possible loss of data
+c:\libigl-master\include\igl\writeOFF.cpp(70): warning C4003: not enough actual parameters for macro 'RGB'
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(94): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(95): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(112): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(158): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(617): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(710): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(725): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(726): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(764): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(859): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(866): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+main.cpp(38): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+main.cpp(118): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\libigl-master\include\igl\ortho.cpp(21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  c:\libigl-master\include\igl\opengl\ViewerCore.cpp(140): note: see reference to function template instantiation 'void igl::ortho<Eigen::Matrix<float,4,4,0,4,4>>(const float,const float,const float,const float,const float,const float,Eigen::PlainObjectBase<Eigen::Matrix<float,4,4,0,4,4>> &)' being compiled
+c:\libigl-master\include\igl\ortho.cpp(22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\ortho.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\frustum.cpp(20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  c:\libigl-master\include\igl\opengl\ViewerCore.cpp(146): note: see reference to function template instantiation 'void igl::frustum<Eigen::Matrix<float,4,4,0,4,4>>(const float,const float,const float,const float,const float,const float,Eigen::PlainObjectBase<Eigen::Matrix<float,4,4,0,4,4>> &)' being compiled
+c:\libigl-master\include\igl\frustum.cpp(21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\frustum.cpp(26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\two_axis_valuator_fixed_up.cpp(28): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(714): note: see reference to function template instantiation 'void igl::two_axis_valuator_fixed_up<float,float>(const int,const int,const double,const Eigen::Quaternion<float,0> &,const int,const int,const int,const int,Eigen::Quaternion<float,0> &)' being compiled
+c:\libigl-master\include\igl\two_axis_valuator_fixed_up.cpp(38): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+c:\libigl-master\include\igl\snap_to_canonical_view_quat.cpp(106): warning C4244: 'argument': conversion from 'const double' to 'const float', possible loss of data
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(876): note: see reference to function template instantiation 'bool igl::snap_to_canonical_view_quat<float,float>(const Eigen::Quaternion<float,0> &,const double,Eigen::Quaternion<float,0> &)' being compiled
+c:\libigl-master\include\igl\readDMAT.cpp(106): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  main.cpp(68): note: see reference to function template instantiation 'bool igl::readDMAT<Eigen::Matrix<int,-1,1,0,-1,1>>(const std::string,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,1,0,-1,1>> &)' being compiled
+c:\libigl-master\include\igl\readDMAT.cpp(125): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\libigl-master\include\igl\per_face_normals.cpp(21): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\per_face_normals.cpp(47): note: see reference to function template instantiation 'void igl::per_face_normals<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,3,1,0,3,1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const Eigen::MatrixBase<Eigen::Matrix<double,3,1,0,3,1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\opengl\ViewerData.cpp(368): note: see reference to function template instantiation 'void igl::per_face_normals<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\list_to_matrix.cpp(22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  c:\libigl-master\include\igl\readOFF.cpp(184): note: see reference to function template instantiation 'bool igl::list_to_matrix<double,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const std::vector<std::vector<double,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              _Ty=double
+          ]
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(379): note: see reference to function template instantiation 'bool igl::readOFF<Eigen::Matrix<double,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,-1,0,-1,-1>>(const std::string,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &)' being compiled
+c:\libigl-master\include\igl\trackball.cpp(121): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  c:\libigl-master\include\igl\trackball.cpp(157): note: see reference to function template instantiation 'void igl::trackball<Scalarquat>(const double,const double,const Q_type,const Q_type *,const double,const double,const double,const double,Q_type *)' being compiled
+          with
+          [
+              Scalarquat=float,
+              Q_type=float
+          ]
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(706): note: see reference to function template instantiation 'void igl::trackball<float,float>(const double,const double,const double,const Eigen::Quaternion<float,0> &,const double,const double,const double,const double,Eigen::Quaternion<float,0> &)' being compiled
+c:\libigl-master\include\igl\trackball.cpp(122): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\trackball.cpp(123): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\trackball.cpp(124): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\trackball.cpp(128): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\trackball.cpp(129): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\trackball.cpp(130): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\trackball.cpp(131): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\unproject.cpp(36): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ]
+  c:\libigl-master\include\igl\unproject.cpp(65): note: see reference to function template instantiation 'void igl::unproject<Derived,Eigen::Matrix<float,4,4,0,4,4>,Eigen::Matrix<float,4,4,0,4,4>,Eigen::Matrix<float,4,1,0,4,1>,Eigen::Matrix<float,3,1,0,3,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,4,0,4,4>> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,4,0,4,4>> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,1,0,4,1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ]
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(725): note: see reference to function template instantiation 'Eigen::Matrix<float,3,1,0,3,1> igl::unproject<float>(const Eigen::Matrix<float,3,1,0,3,1> &,const Eigen::Matrix<float,4,4,0,4,4> &,const Eigen::Matrix<float,4,4,0,4,4> &,const Eigen::Matrix<float,4,1,0,4,1> &)' being compiled
+c:\libigl-master\include\igl\unproject.cpp(36): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ]
+c:\libigl-master\include\igl\snap_to_canonical_view_quat.cpp(48): warning C4305: 'initializing': truncation from 'double' to 'float'
+  c:\libigl-master\include\igl\snap_to_canonical_view_quat.cpp(106): note: see reference to function template instantiation 'bool igl::snap_to_canonical_view_quat<Scalars>(const Q_type *,const Q_type,Q_type *)' being compiled
+          with
+          [
+              Scalars=float,
+              Q_type=float
+          ]
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(876): note: see reference to function template instantiation 'bool igl::snap_to_canonical_view_quat<float,float>(const Eigen::Quaternion<float,0> &,const double,Eigen::Quaternion<float,0> &)' being compiled
+c:\libigl-master\include\igl\snap_to_canonical_view_quat.cpp(64): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\snap_to_canonical_view_quat.cpp(92): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\libigl-master\include\igl\cotmatrix.cpp(29): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\harmonic.cpp(37): note: see reference to function template instantiation 'void igl::cotmatrix<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Scalar>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::SparseMatrix<Scalar,0,int> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  main.cpp(33): note: see reference to function template instantiation 'bool igl::harmonic<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,1,0,-1,1>,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,1,0,-1,1>> &,const Eigen::MatrixBase<Derived> &,const int,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\massmatrix.cpp(26): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\harmonic.cpp(40): note: see reference to function template instantiation 'void igl::massmatrix<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Scalar>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const igl::MassMatrixType,Eigen::SparseMatrix<Scalar,0,int> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\massmatrix.cpp(26): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\massmatrix.cpp(27): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\massmatrix.cpp(27): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\massmatrix.cpp(28): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\massmatrix.cpp(28): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\harmonic.cpp(87): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+  c:\libigl-master\include\igl\harmonic.cpp(42): note: see reference to function template instantiation 'bool igl::harmonic<Scalar,Scalar,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &,const int,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\harmonic.cpp(87): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'const int', possible loss of data
+c:\libigl-master\include\igl\colon.cpp(20): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+  c:\libigl-master\include\igl\colon.cpp(30): note: see reference to function template instantiation 'void igl::colon<L,int,H,int>(const L,const S,const H,Eigen::Matrix<int,-1,1,0,-1,1> &)' being compiled
+          with
+          [
+              L=int,
+              H=Eigen::Index,
+              S=int
+          ]
+  main.cpp(69): note: see reference to function template instantiation 'void igl::colon<int,Eigen::Index,int>(const L,const H,Eigen::Matrix<int,-1,1,0,-1,1> &)' being compiled
+          with
+          [
+              L=int,
+              H=Eigen::Index
+          ]
+c:\libigl-master\include\igl\colon.cpp(20): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'const int', possible loss of data
+c:\libigl-master\include\igl\readOBJ.cpp(138): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  c:\libigl-master\include\igl\readOBJ.cpp(38): note: see reference to function template instantiation 'bool igl::readOBJ<double,int>(FILE *,std::vector<std::vector<double,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,std::vector<std::vector<_Ty,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,std::vector<std::vector<_Ty,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,std::vector<std::vector<int,std::allocator<int>>,std::allocator<std::vector<int,std::allocator<int>>>> &,std::vector<std::vector<int,std::allocator<int>>,std::allocator<std::vector<int,std::allocator<int>>>> &,std::vector<std::vector<int,std::allocator<int>>,std::allocator<std::vector<int,std::allocator<int>>>> &)' being compiled
+          with
+          [
+              _Ty=double
+          ]
+  c:\libigl-master\include\igl\readOBJ.cpp(261): note: see reference to function template instantiation 'bool igl::readOBJ<double,int>(const std::string,std::vector<std::vector<double,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,std::vector<std::vector<_Ty,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,std::vector<std::vector<_Ty,std::allocator<_Ty>>,std::allocator<std::vector<_Ty,std::allocator<_Ty>>>> &,std::vector<std::vector<int,std::allocator<int>>,std::allocator<std::vector<int,std::allocator<int>>>> &,std::vector<std::vector<int,std::allocator<int>>,std::allocator<std::vector<int,std::allocator<int>>>> &,std::vector<std::vector<int,std::allocator<int>>,std::allocator<std::vector<int,std::allocator<int>>>> &)' being compiled
+          with
+          [
+              _Ty=double
+          ]
+  c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(396): note: see reference to function template instantiation 'bool igl::readOBJ<Eigen::Matrix<double,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<int,-1,-1,0,-1,-1>>(const std::string,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &)' being compiled
+c:\libigl-master\include\igl\readOBJ.cpp(142): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+c:\libigl-master\include\igl\readOBJ.cpp(146): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+c:\libigl-master\include\igl\doublearea.cpp(25): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\per_vertex_normals.cpp(65): note: see reference to function template instantiation 'void igl::doublearea<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\per_vertex_normals.cpp(119): note: see reference to function template instantiation 'void igl::per_vertex_normals<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const igl::PerVertexNormalsWeightingType,const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\opengl\ViewerData.cpp(369): note: see reference to function template instantiation 'void igl::per_vertex_normals<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\doublearea.cpp(25): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\doublearea.cpp(53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+c:\libigl-master\include\igl\doublearea.cpp(65): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+c:\libigl-master\include\igl\unproject.cpp(36): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<float,1,3,1,1,3>
+          ]
+  c:\libigl-master\include\igl\unproject.cpp(31): note: see reference to function template instantiation 'void igl::unproject<Derived,Eigen::Matrix<float,4,4,0,4,4>,Eigen::Matrix<float,4,4,0,4,4>,Eigen::Matrix<float,4,1,0,4,1>,Eigen::Matrix<float,1,3,1,1,3>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,4,0,4,4>> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,4,0,4,4>> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,1,0,4,1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<float,1,3,1,1,3>
+          ]
+  c:\libigl-master\include\igl\unproject.cpp(65): note: see reference to function template instantiation 'void igl::unproject<Derived,Eigen::Matrix<float,4,4,0,4,4>,Eigen::Matrix<float,4,4,0,4,4>,Eigen::Matrix<float,4,1,0,4,1>,Eigen::Matrix<float,3,1,0,3,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,4,0,4,4>> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,4,0,4,4>> &,const Eigen::MatrixBase<Eigen::Matrix<float,4,1,0,4,1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<float,3,1,0,3,1>
+          ]
+c:\libigl-master\include\igl\unproject.cpp(36): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<float,1,3,1,1,3>
+          ]
+c:\libigl-master\include\igl\cotmatrix_entries.cpp(28): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\cotmatrix.cpp(60): note: see reference to function template instantiation 'void igl::cotmatrix_entries<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\harmonic.cpp(37): note: see reference to function template instantiation 'void igl::cotmatrix<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Scalar>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::SparseMatrix<Scalar,0,int> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\cotmatrix_entries.cpp(30): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(44): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+  c:\libigl-master\include\igl\harmonic.cpp(98): note: see reference to function template instantiation 'bool igl::min_quad_with_fixed_precompute<Scalar,Derived>(const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::MatrixBase<Derived> &,const Eigen::SparseMatrix<Scalar,0,int> &,const bool,igl::min_quad_with_fixed_data<Scalar> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  c:\libigl-master\include\igl\harmonic.cpp(42): note: see reference to function template instantiation 'bool igl::harmonic<Scalar,Scalar,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &,const int,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(48): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(59): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(161): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(289): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(289): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\squared_edge_lengths.cpp(19): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\internal_angles.cpp(30): note: see reference to function template instantiation 'void igl::squared_edge_lengths<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\per_vertex_normals.cpp(70): note: see reference to function template instantiation 'void igl::internal_angles<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,3,0,-1,3>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,3,0,-1,3>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\squared_edge_lengths.cpp(19): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\dihedral_angles.cpp(43): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+  c:\libigl-master\include\igl\cotmatrix_entries.cpp(68): note: see reference to function template instantiation 'void igl::dihedral_angles_intrinsic<Eigen::Matrix<double,-1,6,0,-1,6>,Eigen::Matrix<double,-1,4,0,-1,4>,Eigen::Matrix<double,-1,6,0,-1,6>,Eigen::Matrix<double,-1,6,0,-1,6>>(Eigen::PlainObjectBase<Eigen::Matrix<double,-1,6,0,-1,6>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,4,0,-1,4>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,6,0,-1,6>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,6,0,-1,6>> &)' being compiled
+c:\libigl-master\include\igl\dihedral_angles.cpp(43): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'const int', possible loss of data
+c:\libigl-master\include\igl\volume.cpp(79): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+  c:\libigl-master\include\igl\cotmatrix_entries.cpp(72): note: see reference to function template instantiation 'void igl::volume<Derived,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+c:\libigl-master\include\igl\volume.cpp(79): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+c:\libigl-master\include\igl\sort.cpp(30): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+  c:\libigl-master\include\igl\doublearea.cpp(162): note: see reference to function template instantiation 'void igl::sort<Derived,Eigen::Matrix<double,-1,3,0,-1,3>,Eigen::Matrix<int,-1,-1,0,-1,-1>>(const Eigen::DenseBase<Derived> &,const int,const bool,Eigen::PlainObjectBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+  c:\libigl-master\include\igl\massmatrix.cpp(56): note: see reference to function template instantiation 'void igl::doublearea<Derived,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,const double,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+  c:\libigl-master\include\igl\harmonic.cpp(40): note: see reference to function template instantiation 'void igl::massmatrix<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Scalar>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,const igl::MassMatrixType,Eigen::SparseMatrix<Scalar,0,int> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\sort.cpp(43): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+c:\libigl-master\include\igl\sort.cpp(74): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\libigl-master\include\igl\sort.cpp(78): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\libigl-master\include\igl\parallel_for.h(108): warning C4244: 'argument': conversion from 'Index' to 'const int', possible loss of data
+  c:\libigl-master\include\igl\doublearea.cpp(199): note: see reference to function template instantiation 'bool igl::parallel_for<Index,igl::doublearea::<lambda_b1a7abd05c28a34d0ed904f04b5bb265>>(const Index,const FunctionType &,const ::size_t)' being compiled
+          with
+          [
+              Index=Index,
+              FunctionType=igl::doublearea::<lambda_b1a7abd05c28a34d0ed904f04b5bb265>
+          ]
+c:\libigl-master\include\igl\slice.cpp(22): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+  c:\libigl-master\include\igl\min_quad_with_fixed.cpp(107): note: see reference to function template instantiation 'void igl::slice<Scalar,Scalar>(const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::Matrix<int,-1,1,0,-1,1> &,const Eigen::Matrix<int,-1,1,0,-1,1> &,Eigen::SparseMatrix<Scalar,0,int> &)' being compiled
+  c:\libigl-master\include\igl\harmonic.cpp(98): note: see reference to function template instantiation 'bool igl::min_quad_with_fixed_precompute<Scalar,Derived>(const Eigen::SparseMatrix<Scalar,0,int> &,const Eigen::MatrixBase<Derived> &,const Eigen::SparseMatrix<Scalar,0,int> &,const bool,igl::min_quad_with_fixed_data<Scalar> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\slice.cpp(23): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\slice.cpp(24): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\slice.cpp(25): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\slice.cpp(54): warning C4996: 'Eigen::DynamicSparseMatrix<TY,1,int>::DynamicSparseMatrix': was declared deprecated
+          with
+          [
+              TY=Scalar
+          ]
+  c:\eigen\unsupported\eigen\src/SparseExtra/DynamicSparseMatrix.h(235): note: see declaration of 'Eigen::DynamicSparseMatrix<TY,1,int>::DynamicSparseMatrix'
+          with
+          [
+              TY=Scalar
+          ]
+c:\libigl-master\include\igl\find.cpp(37): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+  c:\libigl-master\include\igl\min_quad_with_fixed.cpp(126): note: see reference to function template instantiation 'void igl::find<Scalar,Derived,Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::SparseMatrix<Scalar,0,int> &,Eigen::DenseBase<Derived> &,Eigen::DenseBase<Derived> &,Eigen::DenseBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\find.cpp(38): warning C4244: '=': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(402): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  c:\libigl-master\include\igl\min_quad_with_fixed.cpp(555): note: see reference to function template instantiation 'bool igl::min_quad_with_fixed_solve<Scalar,Derived,Derived,Derived,Eigen::Matrix<double,-1,1,0,-1,1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const igl::min_quad_with_fixed_data<Scalar> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,1,0,-1,1>
+          ]
+  c:\libigl-master\include\igl\harmonic.cpp(106): note: see reference to function template instantiation 'bool igl::min_quad_with_fixed_solve<Scalar,Derived,Derived,Derived,Eigen::Matrix<double,-1,1,0,-1,1>>(const igl::min_quad_with_fixed_data<Scalar> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(408): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(426): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(494): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'int', possible loss of data
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(494): warning C4244: 'initializing': conversion from 'Eigen::Index' to 'const int', possible loss of data
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(495): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\min_quad_with_fixed.cpp(495): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\colormap.cpp(1359): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+  c:\libigl-master\include\igl\colormap.cpp(1326): note: see reference to function template instantiation 'void igl::colormap<double>(const double [][3],const T,T &,T &,T &)' being compiled
+          with
+          [
+              T=double
+          ]
+  c:\libigl-master\include\igl\colormap.cpp(1402): note: see reference to function template instantiation 'void igl::colormap<double>(const igl::ColorMapType,const T,T &,T &,T &)' being compiled
+          with
+          [
+              T=double
+          ]
+  c:\libigl-master\include\igl\colormap.cpp(1382): note: see reference to function template instantiation 'void igl::colormap<Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const igl::ColorMapType,const Eigen::MatrixBase<Derived> &,const double,const double,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\parula.cpp(30): note: see reference to function template instantiation 'void igl::colormap<Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const igl::ColorMapType,const Eigen::MatrixBase<Derived> &,const bool,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\opengl\ViewerData.cpp(121): note: see reference to function template instantiation 'void igl::parula<Derived,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::MatrixBase<Derived> &,const bool,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+c:\libigl-master\include\igl\colormap.cpp(1360): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
+c:\libigl-master\include\igl\face_areas.cpp(41): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+  c:\libigl-master\include\igl\face_areas.cpp(30): note: see reference to function template instantiation 'void igl::face_areas<Derived,Eigen::Matrix<double,-1,4,0,-1,4>>(const Eigen::MatrixBase<Derived> &,const double,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,4,0,-1,4>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+  c:\libigl-master\include\igl\cotmatrix_entries.cpp(66): note: see reference to function template instantiation 'void igl::face_areas<Derived,Eigen::Matrix<double,-1,4,0,-1,4>>(const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,4,0,-1,4>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+c:\libigl-master\include\igl\face_areas.cpp(41): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'const int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,6,0,-1,6>
+          ]
+c:\libigl-master\include\igl\sort.cpp(167): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+  c:\libigl-master\include\igl\sort.cpp(37): note: see reference to function template instantiation 'void igl::sort2<Derived,Eigen::Matrix<double,-1,3,0,-1,3>,Eigen::Matrix<int,-1,-1,0,-1,-1>>(const Eigen::DenseBase<Derived> &,const int,const bool,Eigen::PlainObjectBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+  c:\libigl-master\include\igl\doublearea.cpp(162): note: see reference to function template instantiation 'void igl::sort<Derived,Eigen::Matrix<double,-1,3,0,-1,3>,Eigen::Matrix<int,-1,-1,0,-1,-1>>(const Eigen::DenseBase<Derived> &,const int,const bool,Eigen::PlainObjectBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+c:\libigl-master\include\igl\sort.cpp(169): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+c:\libigl-master\include\igl\sort.cpp(213): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+  c:\libigl-master\include\igl\sort.cpp(39): note: see reference to function template instantiation 'void igl::sort3<Derived,Eigen::Matrix<double,-1,3,0,-1,3>,Eigen::Matrix<int,-1,-1,0,-1,-1>>(const Eigen::DenseBase<Derived> &,const int,const bool,Eigen::PlainObjectBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+c:\libigl-master\include\igl\sort.cpp(215): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,3,0,-1,3>
+          ]
+c:\libigl-master\include\igl\parallel_for.h(133): warning C4018: '<': signed/unsigned mismatch
+  c:\libigl-master\include\igl\parallel_for.h(109): note: see reference to function template instantiation 'bool igl::parallel_for<Index,igl::parallel_for::<lambda_d67dbb449184d9e5ffb28ae445bd40de>,igl::parallel_for::<lambda_1bd033e34ec547336e29667af7c5b992>,igl::parallel_for::<lambda_d67dbb449184d9e5ffb28ae445bd40de>>(const Index,const PreFunctionType &,const FunctionType &,const AccumFunctionType &,const ::size_t)' being compiled
+          with
+          [
+              Index=Index,
+              PreFunctionType=igl::parallel_for::<lambda_d67dbb449184d9e5ffb28ae445bd40de>,
+              FunctionType=igl::parallel_for::<lambda_1bd033e34ec547336e29667af7c5b992>,
+              AccumFunctionType=igl::parallel_for::<lambda_d67dbb449184d9e5ffb28ae445bd40de>
+          ]
+  c:\libigl-master\include\igl\doublearea.cpp(199): note: see reference to function template instantiation 'bool igl::parallel_for<Index,igl::doublearea::<lambda_b1a7abd05c28a34d0ed904f04b5bb265>>(const Index,const FunctionType &,const ::size_t)' being compiled
+          with
+          [
+              Index=Index,
+              FunctionType=igl::doublearea::<lambda_b1a7abd05c28a34d0ed904f04b5bb265>
+          ]
+c:\libigl-master\include\igl\slice.cpp(186): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  c:\libigl-master\include\igl\slice.cpp(155): note: see reference to function template instantiation 'void igl::slice<Derived,Eigen::Matrix<int,-1,1,0,-1,1>,Eigen::Matrix<int,-1,1,0,-1,1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const Eigen::DenseBase<Derived> &,const Eigen::DenseBase<Eigen::Matrix<int,-1,1,0,-1,1>> &,const Eigen::DenseBase<Eigen::Matrix<int,-1,1,0,-1,1>> &,Eigen::PlainObjectBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
+          ]
+  c:\libigl-master\include\igl\min_quad_with_fixed.cpp(440): note: see reference to function template instantiation 'void igl::slice<MatrixXT,Derived,MatrixXT>(const MatX &,const Eigen::DenseBase<Derived> &,const int,MatY &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>,
+              MatX=MatrixXT,
+              MatY=MatrixXT
+          ]
+  c:\libigl-master\include\igl\min_quad_with_fixed.cpp(555): note: see reference to function template instantiation 'bool igl::min_quad_with_fixed_solve<Scalar,Derived,Derived,Derived,Eigen::Matrix<double,-1,1,0,-1,1>,Eigen::Matrix<double,-1,-1,0,-1,-1>>(const igl::min_quad_with_fixed_data<Scalar> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Derived> &,Eigen::PlainObjectBase<Derived> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,-1,0,-1,-1>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<double,-1,1,0,-1,1>
+          ]
+c:\libigl-master\include\igl\slice.cpp(187): warning C4244: 'initializing': conversion from 'Eigen::EigenBase<Derived>::Index' to 'int', possible loss of data
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  Generating code
+  All 20193 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe
