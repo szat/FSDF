@@ -1,4 +1,7 @@
 ﻿cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  glad.c
+cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  fsdf.cpp
   main.cpp
 c:\libigl-master\include\igl\opengl\bind_vertex_attrib_array.cpp(21): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLint', possible loss of data
 c:\libigl-master\include\igl\opengl\MeshGL.cpp(144): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
@@ -331,18 +334,5 @@ c:\libigl-master\include\igl\parallel_for.h(133): warning C4018: '<': signed/uns
               FunctionType=igl::doublearea::<lambda_b1a7abd05c28a34d0ed904f04b5bb265>
           ]
   obb.cpp
-c:\users\adrian\documents\github\fsdf\fsdf\obb.h(29): error C2061: syntax error: identifier 'vtkIdList'
-obb.cpp(14): error C2039: 'DataSet': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
-obb.cpp(15): error C2039: 'Level': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
-obb.cpp(16): error C2039: 'MaxLevel': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
-obb.cpp(17): error C2039: 'Automatic': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
-obb.cpp(18): error C2039: 'Tolerance': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
-obb.cpp(20): error C2039: 'PointsList': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
-obb.cpp(22): error C2039: 'Level': is not a member of 'OBBTree'
-  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+  Generating code
