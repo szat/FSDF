@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="fsdf.h" />
+    <ClInclude Include="obb.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tutorial_shared_path.h" />
   </ItemGroup>
@@ -173,6 +174,7 @@
     </ClCompile>
     <ClCompile Include="fsdf.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="obb.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

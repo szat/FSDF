@@ -330,10 +330,19 @@ c:\libigl-master\include\igl\parallel_for.h(133): warning C4018: '<': signed/uns
               Index=Index,
               FunctionType=igl::doublearea::<lambda_b1a7abd05c28a34d0ed904f04b5bb265>
           ]
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
-  Generating code
-  0 of 12496 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    82 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe
+  obb.cpp
+c:\users\adrian\documents\github\fsdf\fsdf\obb.h(29): error C2061: syntax error: identifier 'vtkIdList'
+obb.cpp(14): error C2039: 'DataSet': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+obb.cpp(15): error C2039: 'Level': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+obb.cpp(16): error C2039: 'MaxLevel': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+obb.cpp(17): error C2039: 'Automatic': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+obb.cpp(18): error C2039: 'Tolerance': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+obb.cpp(20): error C2039: 'PointsList': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
+obb.cpp(22): error C2039: 'Level': is not a member of 'OBBTree'
+  c:\users\adrian\documents\github\fsdf\fsdf\obb.h(20): note: see declaration of 'OBBTree'
