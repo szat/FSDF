@@ -70,7 +70,7 @@ c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(726): warning C4244: 'argume
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(764): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(859): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(866): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-main.cpp(171): warning C4018: '<': signed/unsigned mismatch
+main.cpp(166): warning C4018: '<': signed/unsigned mismatch
 c:\libigl-master\include\igl\ortho.cpp(21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   c:\libigl-master\include\igl\opengl\ViewerCore.cpp(140): note: see reference to function template instantiation 'void igl::ortho<Eigen::Matrix<float,4,4,0,4,4>>(const float,const float,const float,const float,const float,const float,Eigen::PlainObjectBase<Eigen::Matrix<float,4,4,0,4,4>> &)' being compiled
 c:\libigl-master\include\igl\ortho.cpp(22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -337,6 +337,6 @@ c:\libigl-master\include\igl\parallel_for.h(133): warning C4018: '<': signed/uns
   obb.cpp
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
   Generating code
-  All 14874 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 15001 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe
