@@ -10,6 +10,7 @@ OBBNode::OBBNode(MatrixXd & vertices, MatrixXd & normals) : vertices(vertices), 
 	this->nb_pts = 0;
 	this->depth = 0;
 	this->idx.clear();
+	this->side_split = -1;
 }
 
 void OBBNode::init(int param_max_level, double param_max_side) {
@@ -29,10 +30,23 @@ void OBBNode::build_tree() {
 	cout << "nb pts " << this->nb_pts << endl;
 	this->compute_obb();
 
-	Vector3d side0 = this->box.row(0);  //side0
-	Vector3d side1 = this->box.row(1);  //side1
-	Vector3d side2 = this->box.row(2);  //side2
+	cout << "build_tree 1" << endl;
+	MatrixXd sides(3, 3);
+	sides.row(0) = this->box.row(0);  //side0
+	sides.row(1) = this->box.row(1);  //side1
+	sides.row(2) = this->box.row(2);  //side2
 	Vector3d corner = this->box.row(3); //side3
+
+	int longest = -1;
+	double measure = -1;
+	for (int i = 0; i < 3; ++i) {
+		if (sides.row(i).norm() > measure) {
+			longest = i;
+			measure = sides.row(i).norm();
+		}
+	}
+
+	cout << "build_tree 2" << endl;
 
 	// Stopping conditions
 	if (this->depth >= this->param_max_level) {
@@ -43,15 +57,19 @@ void OBBNode::build_tree() {
 		cout << "return 2" << endl;
 		return;
 	}
-	if (side2.norm() < 3* this->param_max_side) { //the times 3 is rather arbitrary
+	if (sides.row(longest).norm() < 3* this->param_max_side) { //the times 3 is rather arbitrary
 		cout << "return 3" << endl;
 		return;
 	}
 
-	// Otherwise split along the longuest side
-	if (side2.norm() < side1.norm() || side1.norm() < side0.norm() || side2.norm() < side0.norm()) {
-		throw std::invalid_argument("build_tree(): should be ||side2|| >= ||side1|| >= ||side0||.");
-	}
+	cout << "build_tree 3" << endl;
+
+	cout << "side2 " << sides.row(0).norm() << endl;
+	cout << "side1 " << sides.row(1).norm() << endl;
+	cout << "side0 " << sides.row(2).norm() << endl;
+
+	cout << "build_tree 4" << endl;
+
 	vector<int> idx_L;
 	vector<int> idx_R;
 
@@ -60,11 +78,13 @@ void OBBNode::build_tree() {
 		pcl_temp.row(i) = this->vertices.row(idx.at(i));
 	}
 
+
+	cout << "build_tree 5" << endl;
 	Vector3d center = pcl_temp.colwise().mean(); //side2 is the longest side
-	double t_center = (center - corner).dot(side2)/side2.norm();
+	double t_center = (center - corner).dot(sides.row(longest))/ sides.row(longest).norm();
 	double t_pt;
 	for (size_t i = 0; i < idx.size(); ++i) {
-		t_pt = (pcl_temp.row(i) - corner.transpose()).dot(side2) / side2.norm(); //project each point on side2
+		t_pt = (pcl_temp.row(i) - corner.transpose()).dot(sides.row(longest)) / sides.row(longest).norm(); //project each point on side2
 		if (t_pt < t_center) {
 			idx_L.push_back(idx.at(i));
 		}
@@ -73,6 +93,8 @@ void OBBNode::build_tree() {
 		}
 	}
 
+
+	cout << "build_tree 6" << endl;
 	if (static_cast<long int>(idx_L.size()) + static_cast<long int>(idx_R.size()) != static_cast<long int>(this->idx.size())) {
 		throw std::invalid_argument("build_tree(): sum of splits is not equal to init size!");
 	}
@@ -81,10 +103,11 @@ void OBBNode::build_tree() {
 		return; // Still no split!
 	}
 
-
 	cout << "step one" << endl;
-	// Split will happen here
+	// Split will happen here, along the longest side
+	this->side_split = longest;
 	this->idx.clear(); //free memory
+	cout << "after idx.clear()" << endl;
 
 	this->left = unique_ptr<OBBNode>(new OBBNode(this->vertices, this->normals));
 	this->left->param_max_level = this->param_max_level;
@@ -122,7 +145,7 @@ MatrixXd OBBNode::get_obb() const {
 };
 
 void OBBNode::compute_obb() {
-	
+	cout << "enter compute obb" << endl;
 	// Slicing 
 	MatrixXd V(this->idx.size(), 3);
 	for (size_t i = 0; i < this->idx.size(); ++i) {
@@ -138,7 +161,6 @@ void OBBNode::compute_obb() {
 	Vector3d ev0 = eig.eigenvectors().col(0); //min
 	Vector3d ev1 = eig.eigenvectors().col(1); //mid
 	Vector3d ev2 = eig.eigenvectors().col(2); //max
-
 											  // Vernier
 	Vector3d tMin = DBL_MAX * Vector3d::Ones(3);
 	Vector3d tMax = -DBL_MAX * Vector3d::Ones(3);
@@ -177,7 +199,7 @@ void OBBNode::compute_obb() {
 
 	this->box = temp;
 
-	//cout << "box " << this->box << endl;
+	cout << "exit compute obb7" << endl;
 };
 
 

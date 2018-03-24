@@ -21,6 +21,7 @@ private:
 	vector<int> idx;
 	int nb_pts;
 	int depth;
+	int side_split; //along which side it was split
 	MatrixXd box; //5 x 3
 
 	unique_ptr<OBBNode> left;
