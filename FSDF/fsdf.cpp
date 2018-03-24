@@ -50,6 +50,7 @@ vector<int> OBBTree::ray_intersect(const Ref<const Vector3d> source, const Ref<c
 	return pt_list;
 }
 
-double OBBTree::query(const Ref<const Vector3d> pt) const {
-	return 0;
+VectorXd OBBTree::query() const {
+	VectorXd out;
+	return out;
 }

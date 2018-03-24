@@ -13,6 +13,7 @@ class OBBNode {
 typedef Matrix<double, 5, 3> Box;
 
 private:
+	// Members
 	vector<int> idx;
 	int nb_pts;
 	int depth;
@@ -24,6 +25,7 @@ private:
 	//box.row(4) = evals; 
 
 public:
+	// Members
 	unique_ptr<OBBNode> left;
 	unique_ptr<OBBNode> right;
 
@@ -32,6 +34,7 @@ public:
 	OBBNode(const OBBNode& other) = delete;
 	OBBNode& operator=(const OBBNode& rhs) = delete;
 
+	// User functions
 	void compute_obb(); 
 	Box get_obb() const;
 };
@@ -56,5 +59,5 @@ public:
 
 	// User functions
 	void build_tree();	
-	double query(const Ref<const Vector3d> pt) const;
+	VectorXd query() const;
 };
