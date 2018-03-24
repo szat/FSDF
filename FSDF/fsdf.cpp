@@ -4,12 +4,20 @@
 // Node
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-OBBNode::OBBNode(MatrixXd & vertices) : vertices(vertices) {
+OBBNode::OBBNode(MatrixXd & vertices, MatrixXd & normals) : vertices(vertices), normals(normals) {
 	this->left = nullptr;
 	this->right = nullptr;
 	this->nb_pts = 0;
 	this->depth = 0;
 	this->idx.clear();
+}
+
+OBBNode::init() {
+
+}
+
+int OBBNode::get_depth() { 
+	return this->depth;
 }
 
 void OBBNode::set_idx(vector<int> idx) { //want copy
@@ -90,35 +98,8 @@ void OBBNode::build_tree() {
 	return;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Tree
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-OBBTree::OBBTree(MatrixXd pcl, MatrixXd normals) {
-	this->pcl = pcl; //I actually want a new copy of pcl
-	this->normals = normals;
-	this->max_depth = 4;
-	this->max_dist = 0;
-	this->nb_leaves = 0;
-	this->root = unique_ptr<OBBNode>(new OBBNode(pcl)); 
-	vector<int> pt_list;
-	for (size_t i = 0; i < pcl.rows(); ++i) {
-		pt_list.push_back(i);
-	}
-	this->root->set_idx(pt_list);
-}
-
-void OBBTree::build() {
-	this->root->compute_obb();
-	return;
-}
-
-vector<int> OBBTree::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
+vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
 	vector<int> pt_list;
 	return pt_list;
 }
 
-VectorXd OBBTree::query() const {
-	VectorXd out;
-	return out;
-}

@@ -11,19 +11,23 @@ using namespace Eigen;
 
 class OBBNode {
 private:
-	// Members
+	// "Global" members
 	MatrixXd & vertices; //stored in the tree
+	MatrixXd & normals;
+	int max_level;
+
+	// "Local" members
 	vector<int> idx;
 	int nb_pts;
 	int depth;
 	MatrixXd box; //5 x 3, r(0) = corner, r(1) = side1, r(2) = side2, r(3) = side3, r(4) = evals; 
-public:
-	// Members
+	
 	unique_ptr<OBBNode> left;
 	unique_ptr<OBBNode> right;
+public:
 
 	// Special member functions, move semantic only
-	OBBNode(MatrixXd & vertices);
+	OBBNode(MatrixXd & vertices, MatrixXd & normals);
 	OBBNode(const OBBNode& other) = delete;
 	OBBNode& operator=(const OBBNode& rhs) = delete;
 
@@ -33,27 +37,6 @@ public:
 	void set_idx(vector<int> idx);
 	void set_obb(MatrixXd box);
 	MatrixXd get_obb() const;
-};
-
-class OBBTree {
-private:
-	// Members
-	int max_depth; //of the tree
-	int nb_leaves;
-	double max_dist; //between two vertices linked by an edge
-	MatrixXd pcl;
-	MatrixXd normals;
-	unique_ptr<OBBNode> root;
-
-	// Inner functions
+	int get_depth();
 	vector<int> ray_intersect(const Vector3d & source, const Vector3d & dir) const;
-public:
-	// Special member functions, move semantic only
-	OBBTree(MatrixXd pcl, MatrixXd normals); //Want copy of structures
-	OBBTree(const OBBTree& other) = delete;
-	OBBTree& operator=(const OBBTree& rhs) = delete;
-
-	// User functions
-	void build();
-	VectorXd query() const;
 };
