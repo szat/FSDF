@@ -4,7 +4,7 @@
 // Node
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-OBBTree::OBBNode::OBBNode() {
+OBBNode::OBBNode(MatrixXd & vertices) : vertices(vertices) {
 	this->left = nullptr;
 	this->right = nullptr;
 	this->nb_pts = 0;
@@ -12,41 +12,24 @@ OBBTree::OBBNode::OBBNode() {
 	this->idx.clear();
 }
 
-void OBBTree::OBBNode::set_obb(MatrixXd box) {
+void OBBNode::set_idx(vector<int> idx) { //want copy
+	this->idx = idx;
 }
 
-MatrixXd OBBTree::OBBNode::get_obb() const {
+void OBBNode::set_obb(MatrixXd box) {
+	this->box = box;
+}
+
+MatrixXd OBBNode::get_obb() const {
 	return this->box;
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Tree
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-OBBTree::OBBTree(MatrixXd pcl, MatrixXd normals) {
-	this->pcl = pcl; //I actually want a new copy of pcl
-	this->normals = normals;
-	this->max_depth = 4;
-	this->max_dist = 0;
-	this->nb_leaves = 0;
-	this->root = unique_ptr<OBBNode>(new OBBNode()); //owning
-}
-
-void OBBTree::build_tree() {
-	//one iteration
-	root->left = unique_ptr<OBBNode>(new OBBNode());
-	root->right = unique_ptr<OBBNode>(new OBBNode());
-	//stopping condition: max_level or obb statistics
-	return;
-}
-
-MatrixXd OBBTree::compute_obb(vector<int> & idx) const {
-	MatrixXd box(5, 3);
-
+void OBBNode::compute_obb() {
+	
 	// Slicing 
-	MatrixXd V(idx.size(), 3);
-	for (size_t i = 0; i < idx.size(); ++i) {
-		V.row(i) = this->pcl.row(idx.at(i));
+	MatrixXd V(this->idx.size(), 3);
+	for (size_t i = 0; i < this->idx.size(); ++i) {
+		V.row(i) = this->vertices.row(this->idx.at(i));
 	}
 
 	Vector3d center = V.colwise().mean();
@@ -59,7 +42,7 @@ MatrixXd OBBTree::compute_obb(vector<int> & idx) const {
 	Vector3d ev1 = eig.eigenvectors().col(1); //mid
 	Vector3d ev2 = eig.eigenvectors().col(2); //max
 
-	// Vernier
+											  // Vernier
 	Vector3d tMin = DBL_MAX * Vector3d::Ones(3);
 	Vector3d tMax = -DBL_MAX * Vector3d::Ones(3);
 
@@ -88,16 +71,49 @@ MatrixXd OBBTree::compute_obb(vector<int> & idx) const {
 			tMax[2] = t;
 	}
 
-	box.row(0) = (tMax[0] - tMin[0]) * ev0; //side0
-	box.row(1) = (tMax[1] - tMin[1]) * ev1; //side1
-	box.row(2) = (tMax[2] - tMin[2]) * ev2; //side2
-	box.row(3) = center + tMin[0] * ev0 + tMin[1] * ev1 + tMin[2] * ev2; //corner
-	box.row(4) = eig.eigenvalues();
-
-	return box;
+	this->box.row(0) = (tMax[0] - tMin[0]) * ev0; //side0
+	this->box.row(1) = (tMax[1] - tMin[1]) * ev1; //side1
+	this->box.row(2) = (tMax[2] - tMin[2]) * ev2; //side2
+	this->box.row(3) = center + tMin[0] * ev0 + tMin[1] * ev1 + tMin[2] * ev2; //corner
+	this->box.row(4) = eig.eigenvalues();
 };
 
-vector<int> OBBTree::ray_intersect(const Ref<const Vector3d> source, const Ref<const Vector3d> dir) const {
+void OBBNode::build_tree() {
+	//// First level
+	//MatrixXd compute_obb(vector<int> & idx);
+
+	////one iteration
+	//root->left = unique_ptr<OBBNode>(new OBBNode(this->pcl));
+	//root->right = unique_ptr<OBBNode>(new OBBNode(this->pcl));
+	////stopping condition: max_level or obb statistics
+	//return;
+	return;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Tree
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+OBBTree::OBBTree(MatrixXd pcl, MatrixXd normals) {
+	this->pcl = pcl; //I actually want a new copy of pcl
+	this->normals = normals;
+	this->max_depth = 4;
+	this->max_dist = 0;
+	this->nb_leaves = 0;
+	this->root = unique_ptr<OBBNode>(new OBBNode(pcl)); 
+	vector<int> pt_list;
+	for (size_t i = 0; i < pcl.rows(); ++i) {
+		pt_list.push_back(i);
+	}
+	this->root->set_idx(pt_list);
+}
+
+void OBBTree::build() {
+	this->root->compute_obb();
+	return;
+}
+
+vector<int> OBBTree::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
 	vector<int> pt_list;
 	return pt_list;
 }

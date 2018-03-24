@@ -24,9 +24,6 @@
     <ClInclude Include="fsdf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="obb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,9 +33,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fsdf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="obb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

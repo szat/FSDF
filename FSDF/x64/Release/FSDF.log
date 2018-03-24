@@ -2,6 +2,9 @@
   glad.c
 cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
   fsdf.cpp
+fsdf.cpp(50): warning C4018: '<': signed/unsigned mismatch
+fsdf.cpp(105): warning C4018: '<': signed/unsigned mismatch
+fsdf.cpp(106): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
   main.cpp
 c:\libigl-master\include\igl\opengl\bind_vertex_attrib_array.cpp(21): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLint', possible loss of data
 c:\libigl-master\include\igl\opengl\MeshGL.cpp(144): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
@@ -70,10 +73,8 @@ c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(726): warning C4244: 'argume
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(764): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(859): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 c:\libigl-master\include\igl\opengl\glfw\Viewer.cpp(866): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-main.cpp(69): warning C4018: '<': signed/unsigned mismatch
-main.cpp(125): warning C4018: '<': signed/unsigned mismatch
-main.cpp(161): warning C4018: '<': signed/unsigned mismatch
-main.cpp(162): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+main.cpp(96): warning C4018: '<': signed/unsigned mismatch
+main.cpp(97): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
 c:\libigl-master\include\igl\ortho.cpp(21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   c:\libigl-master\include\igl\opengl\ViewerCore.cpp(140): note: see reference to function template instantiation 'void igl::ortho<Eigen::Matrix<float,4,4,0,4,4>>(const float,const float,const float,const float,const float,const float,Eigen::PlainObjectBase<Eigen::Matrix<float,4,4,0,4,4>> &)' being compiled
 c:\libigl-master\include\igl\ortho.cpp(22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -92,7 +93,7 @@ c:\libigl-master\include\igl\doublearea.cpp(25): warning C4244: 'initializing': 
           [
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
           ]
-  main.cpp(184): note: see reference to function template instantiation 'void igl::doublearea<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
+  main.cpp(107): note: see reference to function template instantiation 'void igl::doublearea<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
           with
           [
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
@@ -216,7 +217,7 @@ c:\libigl-master\include\igl\squared_edge_lengths.cpp(19): warning C4244: 'initi
           [
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
           ]
-  main.cpp(184): note: see reference to function template instantiation 'void igl::doublearea<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
+  main.cpp(107): note: see reference to function template instantiation 'void igl::doublearea<Derived,Eigen::Matrix<int,-1,-1,0,-1,-1>,Eigen::Matrix<double,-1,1,0,-1,1>>(const Eigen::MatrixBase<Derived> &,const Eigen::MatrixBase<Eigen::Matrix<int,-1,-1,0,-1,-1>> &,Eigen::PlainObjectBase<Eigen::Matrix<double,-1,1,0,-1,1>> &)' being compiled
           with
           [
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
@@ -332,9 +333,8 @@ c:\libigl-master\include\igl\colormap.cpp(1359): warning C4244: 'initializing': 
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
           ]
 c:\libigl-master\include\igl\colormap.cpp(1360): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
-  obb.cpp
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
   Generating code
-  All 16453 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 6371 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe

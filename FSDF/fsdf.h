@@ -9,35 +9,33 @@
 using namespace std;
 using namespace Eigen;
 
+class OBBNode {
+private:
+	// Members
+	MatrixXd & vertices; //stored in the tree
+	vector<int> idx;
+	int nb_pts;
+	int depth;
+	MatrixXd box; //5 x 3, r(0) = corner, r(1) = side1, r(2) = side2, r(3) = side3, r(4) = evals; 
+public:
+	// Members
+	unique_ptr<OBBNode> left;
+	unique_ptr<OBBNode> right;
+
+	// Special member functions, move semantic only
+	OBBNode(MatrixXd & vertices);
+	OBBNode(const OBBNode& other) = delete;
+	OBBNode& operator=(const OBBNode& rhs) = delete;
+
+	// Tree functions
+	void compute_obb();
+	void build_tree();
+	void set_idx(vector<int> idx);
+	void set_obb(MatrixXd box);
+	MatrixXd get_obb() const;
+};
+
 class OBBTree {
-	class OBBNode {
-	private:
-		// Members
-		vector<int> idx;
-		int nb_pts;
-		int depth;
-		MatrixXd box; //5 x 3
-		//box.row(0) = corner;
-		//box.row(1) = side1; 
-		//box.row(2) = side2; 
-		//box.row(3) = side3; 
-		//box.row(4) = evals; 
-	public:
-		// Members
-		unique_ptr<OBBNode> left;
-		unique_ptr<OBBNode> right;
-
-		// Special member functions, move semantic only
-		OBBNode();
-		OBBNode(const OBBNode& other) = delete;
-		OBBNode& operator=(const OBBNode& rhs) = delete;
-
-		// Tree functions
-		void set_obb(MatrixXd box);
-		MatrixXd get_obb() const;
-	};
-	// End nested class
-
 private:
 	// Members
 	int max_depth; //of the tree
@@ -48,8 +46,7 @@ private:
 	unique_ptr<OBBNode> root;
 
 	// Inner functions
-	MatrixXd compute_obb(vector<int> & idx) const;
-	vector<int> ray_intersect(const Ref<const Vector3d> source, const Ref<const Vector3d> dir) const;
+	vector<int> ray_intersect(const Vector3d & source, const Vector3d & dir) const;
 public:
 	// Special member functions, move semantic only
 	OBBTree(MatrixXd pcl, MatrixXd normals); //Want copy of structures
@@ -57,6 +54,6 @@ public:
 	OBBTree& operator=(const OBBTree& rhs) = delete;
 
 	// User functions
-	void build_tree();	
+	void build();
 	VectorXd query() const;
 };
