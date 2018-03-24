@@ -12,28 +12,30 @@ using namespace Eigen;
 class OBBNode {
 private:
 	// "Global" members
-	MatrixXd & vertices; //stored in the tree
+	MatrixXd & vertices; 
 	MatrixXd & normals;
-	int max_level;
+	int param_max_level;
+	double param_max_side;
 
 	// "Local" members
 	vector<int> idx;
 	int nb_pts;
 	int depth;
-	MatrixXd box; //5 x 3, r(0) = corner, r(1) = side1, r(2) = side2, r(3) = side3, r(4) = evals; 
-	
+	MatrixXd box; //5 x 3
+
 	unique_ptr<OBBNode> left;
 	unique_ptr<OBBNode> right;
 public:
-
 	// Special member functions, move semantic only
 	OBBNode(MatrixXd & vertices, MatrixXd & normals);
 	OBBNode(const OBBNode& other) = delete;
 	OBBNode& operator=(const OBBNode& rhs) = delete;
 
 	// Tree functions
-	void compute_obb();
+	void init(int param_max_level, double param_max_side);
 	void build_tree();
+
+	void compute_obb();
 	void set_idx(vector<int> idx);
 	void set_obb(MatrixXd box);
 	MatrixXd get_obb() const;
