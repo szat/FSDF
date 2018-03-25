@@ -194,16 +194,25 @@ bool OBBNode::is_leaf() const {
 
 bool OBBNode::in_box(const Vector3d & source) const
 {
-	bool in_box = true;
-	Vector3d corner = this->box.row(3);
-	for (int i = 0; i < 3; ++i) { //the three sides
-		double t = (source - corner).dot(this->box.row(i)) / this->box.row(i).norm();
-		if (t < 0 || t > 1) in_box = false;
+	double ux = (this->box.row(0)).dot(source);
+	double vx = (this->box.row(1)).dot(source);
+	double wx = (this->box.row(2)).dot(source);
+	double up1 = (this->box.row(0)).dot(this->box.row(3));
+	double up2 = (this->box.row(0)).dot(this->box.row(3) + this->box.row(0));
+	double vp1 = (this->box.row(1)).dot(this->box.row(3));
+	double vp2 = (this->box.row(1)).dot(this->box.row(3) + this->box.row(1));
+	double wp1 = (this->box.row(2)).dot(this->box.row(3));
+	double wp2 = (this->box.row(2)).dot(this->box.row(3) + this->box.row(2));
+
+	if (up1 <= ux && ux <= up2 && vp1 <= vx && vx <= vp2 && wp1 <= wx && wx <= wp2) {
+		return true;
 	}
-	return in_box;
+	else {
+		return false;
+	}
 }
 
-bool OBBNode::intersect_box2(const Vector3d & source, const Vector3d & dir) const {
+bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const {
 	MatrixXd cornerz(8, 3);
 	cornerz.row(0) = this->box.row(3);
 	cornerz.row(1) = this->box.row(3) + this->box.row(0);
@@ -215,120 +224,12 @@ bool OBBNode::intersect_box2(const Vector3d & source, const Vector3d & dir) cons
 	cornerz.row(7) = this->box.row(3) + this->box.row(0) + this->box.row(1) + this->box.row(2);
 
 	for (int i = 0; i < 8; ++i) {
-		double t = (cornerz.row(i) - source).dot(dir) / dir.norm();
+		double t = (cornerz.row(i) - source.transpose()).dot(dir) / dir.norm();
 		if (this->in_box(source + t * dir)) {
 			return true;
 		}
 	}
-
 	return false;
-}
-
-bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const
-{
-	cout << "in intersect_box" << endl;
-	// From Geometric tools for computer graphics, p. 632.
-	// Can be modified for the corner/side representation, but I am running out of time.
-	// Create the same representation as used in GTCG (book above)
-	Vector3d center = this->box.row(4) + (this->box.row(0) + this->box.row(1) + this->box.row(2)) / 2;
-	Vector3d halves;
-	halves << this->box.row(0).norm() / 2, this->box.row(1).norm() / 2, this->box.row(2).norm() / 2;
-	MatrixXd axis(3, 3);
-	axis.row(0) = this->box.row(0) / this->box.row(0).norm();
-	axis.row(1) = this->box.row(1) / this->box.row(1).norm();
-	axis.row(2) = this->box.row(2) / this->box.row(2).norm();
-	Vector3d dirN = dir / dir.norm();
-
-	double tNear = -DBL_MAX;
-	double tFar = DBL_MAX;
-	double r, s, t0, t1;
-	for (int i = 0; i < 3; ++i) { // Check for ray parallel to planes
-		if (abs(dirN.dot(axis.row(i)) < numeric_limits<double>::epsilon())) {
-			// Ray parallel to planes
-			r = axis.row(i).dot(center - source);
-			if (-r - halves[i] > 0 || -r + halves[i] > 0) {
-				// No intersection
-				return false;
-			}
-		}
-		r = axis.row(i).dot(center - source);
-		s = axis.row(i).dot(dirN);
-		// Ray not parallel to planes, so find parameters of intersections
-		t0 = (r + halves[i]) / s;
-		t1 = (r - halves[i]) / s;
-		// Check ordering
-		if (t0 > t1) {
-			// Swap them
-			double tmp = t0;
-			t0 = t1;
-			t1 = tmp;
-		}
-		// Compare with current values
-		if (t0 > tNear) {
-			tNear = t0;
-		}
-		if (t1 < tFar) {
-			tFar = t1;
-		}
-		// Check if ray misses entirely
-		if (tNear > tFar) {
-			return false;
-		}
-		if (tFar < 0) {
-			return false;
-		}
-	}
-	// Box definitely intersected
-	if (tNear > 0) {
-		double tIntersect = tNear;
-	}
-	else {
-		double tIntersect = tFar;
-	}
-	return true;
-}
-
-void OBBNode::viz_tree(MatrixXd & VB, MatrixXi & FB, int level) {
-
-	MatrixXd V(8, 3);
-	MatrixXi F(12, 3);
-	Vector3d corner = this->right->right->box.row(3);
-	Vector3d side0 = this->right->right->box.row(0);
-	Vector3d side1 = this->right->right->box.row(1);
-	Vector3d side2 = this->right->right->box.row(2);
-	V.row(0) = corner.transpose();
-	V.row(1) = corner.transpose() + side0.transpose();
-	V.row(2) = corner.transpose() + side1.transpose();
-	V.row(3) = corner.transpose() + side2.transpose();
-	V.row(4) = corner.transpose() + side0.transpose() + side1.transpose();
-	V.row(5) = corner.transpose() + side0.transpose() + side2.transpose();
-	V.row(6) = corner.transpose() + side1.transpose() + side2.transpose();
-	V.row(7) = corner.transpose() + side0.transpose() + side1.transpose() + side2.transpose();
-
-	F << 0, 2, 1,
-		2, 4, 1,
-		0, 3, 6,
-		2, 0, 6,
-		3, 5, 7,
-		6, 3, 7,
-		5, 1, 4,
-		7, 5, 4,
-		0, 5, 3,
-		0, 1, 5,
-		7, 4, 2,
-		6, 7, 2;
-
-	//MatrixXd VB;
-	MatrixXd tempV(VB.rows() + 8,3);
-	MatrixXi tempF(VB.rows() + 12,3);
-	tempV << VB,
-		V;
-	//MatrixXi FB;
-	tempF << FB,
-		(F.array() + VB.rows());
-	VB = tempV;
-	FB = tempF;
-
 }
 
 vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {

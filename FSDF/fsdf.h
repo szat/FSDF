@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <numeric>
 #include <Eigen/Dense>
 #include <Eigen/Eigenvalues>
 
@@ -44,8 +43,6 @@ public:
 	int get_depth();
 	bool is_leaf() const;
 	bool in_box(const Vector3d & source) const;
-	bool intersect_box(const Vector3d & source, const Vector3d & dir) const;
 	vector<int> ray_intersect(const Vector3d & source, const Vector3d & dir) const;
-	void viz_tree(MatrixXd & VB, MatrixXi & FB, int level);
-	bool intersect_box2(const Vector3d & source, const Vector3d & dir) const;
+	bool intersect_box(const Vector3d & source, const Vector3d & dir) const;
 };
