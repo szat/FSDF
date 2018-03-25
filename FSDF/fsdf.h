@@ -21,7 +21,7 @@ private:
 	vector<int> idx;
 	int nb_pts;
 	int depth;
-	int side_split; //along which side it was split
+	int longest_side; //along which side it was split
 	MatrixXd box; //5 x 3
 
 	unique_ptr<OBBNode> left;
@@ -41,5 +41,7 @@ public:
 	void set_obb(MatrixXd box);
 	MatrixXd get_obb() const;
 	int get_depth();
+	bool is_leaf() const;
+	bool in_box(const Vector3d & source) const;
 	vector<int> ray_intersect(const Vector3d & source, const Vector3d & dir) const;
 };

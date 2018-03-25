@@ -1,16 +1,12 @@
 #include "fsdf.h"
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Node
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 OBBNode::OBBNode(MatrixXd & vertices, MatrixXd & normals) : vertices(vertices), normals(normals) {
 	this->left = nullptr;
 	this->right = nullptr;
 	this->nb_pts = 0;
 	this->depth = 0;
 	this->idx.clear();
-	this->side_split = -1;
+	this->longest_side = -1;
 }
 
 void OBBNode::init(int param_max_level, double param_max_side) {
@@ -26,11 +22,9 @@ void OBBNode::init(int param_max_level, double param_max_side) {
 }
 
 void OBBNode::build_tree() {
-	cout << this->depth << endl;
-	cout << "nb pts " << this->nb_pts << endl;
-	this->compute_obb();
+	cout << "build_tree(): depth = " << this->depth << ", nb_pts = " << this->nb_pts << ", idx length = " << this->idx.size() << endl;
+	this->compute_obb(); //all nodes have computed obb
 
-	cout << "build_tree 1" << endl;
 	MatrixXd sides(3, 3);
 	sides.row(0) = this->box.row(0);  //side0
 	sides.row(1) = this->box.row(1);  //side1
@@ -45,30 +39,23 @@ void OBBNode::build_tree() {
 			measure = sides.row(i).norm();
 		}
 	}
+	this->longest_side = longest;
 
-	cout << "build_tree 2" << endl;
+	//cout << "build_tree 2" << endl;
 
 	// Stopping conditions
 	if (this->depth >= this->param_max_level) {
-		cout << "return 1" << endl;
+		//cout << "return 1" << endl;
 		return;
 	}
 	if (this->nb_pts <= 3) {
-		cout << "return 2" << endl;
+		//cout << "return 2" << endl;
 		return;
 	}
 	if (sides.row(longest).norm() < 3* this->param_max_side) { //the times 3 is rather arbitrary
-		cout << "return 3" << endl;
+		//cout << "return 3" << endl;
 		return;
 	}
-
-	cout << "build_tree 3" << endl;
-
-	cout << "side2 " << sides.row(0).norm() << endl;
-	cout << "side1 " << sides.row(1).norm() << endl;
-	cout << "side0 " << sides.row(2).norm() << endl;
-
-	cout << "build_tree 4" << endl;
 
 	vector<int> idx_L;
 	vector<int> idx_R;
@@ -78,8 +65,7 @@ void OBBNode::build_tree() {
 		pcl_temp.row(i) = this->vertices.row(idx.at(i));
 	}
 
-
-	cout << "build_tree 5" << endl;
+	//cout << "build_tree 5" << endl;
 	Vector3d center = pcl_temp.colwise().mean(); //side2 is the longest side
 	double t_center = (center - corner).dot(sides.row(longest))/ sides.row(longest).norm();
 	double t_pt;
@@ -93,8 +79,7 @@ void OBBNode::build_tree() {
 		}
 	}
 
-
-	cout << "build_tree 6" << endl;
+	//cout << "build_tree 6" << endl;
 	if (static_cast<long int>(idx_L.size()) + static_cast<long int>(idx_R.size()) != static_cast<long int>(this->idx.size())) {
 		throw std::invalid_argument("build_tree(): sum of splits is not equal to init size!");
 	}
@@ -103,11 +88,10 @@ void OBBNode::build_tree() {
 		return; // Still no split!
 	}
 
-	cout << "step one" << endl;
+	//cout << "step one" << endl;
 	// Split will happen here, along the longest side
-	this->side_split = longest;
 	this->idx.clear(); //free memory
-	cout << "after idx.clear()" << endl;
+	//cout << "after idx.clear()" << endl;
 
 	this->left = unique_ptr<OBBNode>(new OBBNode(this->vertices, this->normals));
 	this->left->param_max_level = this->param_max_level;
@@ -145,7 +129,6 @@ MatrixXd OBBNode::get_obb() const {
 };
 
 void OBBNode::compute_obb() {
-	cout << "enter compute obb" << endl;
 	// Slicing 
 	MatrixXd V(this->idx.size(), 3);
 	for (size_t i = 0; i < this->idx.size(); ++i) {
@@ -198,13 +181,59 @@ void OBBNode::compute_obb() {
 	temp.row(4) = eig.eigenvalues();
 
 	this->box = temp;
-
-	cout << "exit compute obb7" << endl;
 };
 
+bool OBBNode::is_leaf() const {
+	if (this->left == nullptr &&  this->right == nullptr || this->depth == this->param_max_level) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool OBBNode::in_box(const Vector3d & source) const
+{
+	bool in_box = true;
+	Vector3d corner = this->box.row(3);
+	for (int i = 0; i < 3; ++i) { //the three sides
+		double t = (source - corner).dot(this->box.row(i)) / this->box.row(i).norm();
+		if (t < 0 || t > 1) in_box = false;
+	}
+	return in_box;
+}
 
 vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
+	vector<int> cat_out;
+	if (this->is_leaf()) {
+		Vector3d corner = this->box.row(3);
+		bool in_box = true;
+		for (int i = 0; i < 3; ++i) { //the three sides
+			double t = (source - corner).dot(box.row(i)) / box.row(i).norm();
+			if (t < 0 || t > 1) in_box = false;
+		}
+		if (in_box) { //if the source ppt is in the obb, then we are in the "mother" obb
+			vector<int> empty;
+			return empty;
+		}
+		else {
+			vector<int> sphere_list;
+			return sphere_list;
+		}
+	}
+	else {
+		//if source is in left
+		this->left->ray_intersect()
+		//if source is in right
+		this->right->ray_intersect()
+	}
+	//if line intersects
+	this->box;
+	//return sphere index list
+	//
+
+	//do not return intersections with spheres in its own obb
+	
 	vector<int> pt_list;
 	return pt_list;
 }
-
