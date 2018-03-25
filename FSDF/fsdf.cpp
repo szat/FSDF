@@ -22,7 +22,7 @@ void OBBNode::init(int param_max_level, double param_max_side) {
 }
 
 void OBBNode::build_tree() {
-	cout << "build_tree(): depth = " << this->depth << ", nb_pts = " << this->nb_pts << ", idx length = " << this->idx.size() << endl;
+//	cout << "build_tree(): depth = " << this->depth << ", nb_pts = " << this->nb_pts << ", idx length = " << this->idx.size() << endl;
 	this->compute_obb(); //all nodes have computed obb
 
 	MatrixXd sides(3, 3);
@@ -48,11 +48,11 @@ void OBBNode::build_tree() {
 		//cout << "return 1" << endl;
 		return;
 	}
-	if (this->nb_pts <= 3) {
+	if (this->nb_pts <= 8) {
 		//cout << "return 2" << endl;
 		return;
 	}
-	if (sides.row(longest).norm() < 3* this->param_max_side) { //the times 3 is rather arbitrary
+	if (sides.row(longest).norm() < 3 * this->param_max_side) { //the times 3 is rather arbitrary
 		//cout << "return 3" << endl;
 		return;
 	}
@@ -67,7 +67,7 @@ void OBBNode::build_tree() {
 
 	//cout << "build_tree 5" << endl;
 	Vector3d center = pcl_temp.colwise().mean(); //side2 is the longest side
-	double t_center = (center - corner).dot(sides.row(longest))/ sides.row(longest).norm();
+	double t_center = (center - corner).dot(sides.row(longest)) / sides.row(longest).norm();
 	double t_pt;
 	for (size_t i = 0; i < idx.size(); ++i) {
 		t_pt = (pcl_temp.row(i) - corner.transpose()).dot(sides.row(longest)) / sides.row(longest).norm(); //project each point on side2
@@ -96,10 +96,10 @@ void OBBNode::build_tree() {
 	this->left = unique_ptr<OBBNode>(new OBBNode(this->vertices, this->normals));
 	this->left->param_max_level = this->param_max_level;
 	this->left->param_max_side = this->param_max_side;
-	this->left->set_idx(idx_L); 
+	this->left->set_idx(idx_L);
 	this->left->depth = this->depth + 1;
 	this->left->nb_pts = idx_L.size();
-	this->left->build_tree(); //<========= Recursion
+	this->left->build_tree(); //<========= Recursion Left
 
 	this->right = unique_ptr<OBBNode>(new OBBNode(this->vertices, this->normals));
 	this->right->param_max_level = this->param_max_level;
@@ -107,12 +107,12 @@ void OBBNode::build_tree() {
 	this->right->set_idx(idx_R);
 	this->right->depth = this->depth + 1;
 	this->right->nb_pts = idx_R.size();
-	this->right->build_tree(); //<========= Recursion
+	this->right->build_tree(); //<========= Recursion Right
 
 	return;
 }
 
-int OBBNode::get_depth() { 
+int OBBNode::get_depth() {
 	return this->depth;
 }
 
@@ -152,7 +152,7 @@ void OBBNode::compute_obb() {
 	for (size_t i = 0; i < centered.rows(); ++i) { //Still in col major, potential optimiation
 		Vector3d pt = centered.row(i);
 
-		// a + ab * dot(ap,ab)/dot(ab,ab), a = means, p = pt, b = amax (or amid or amin)
+		// a + ab * dot(ap,ab)/norm(ab,ab), a = means, p = pt, b = amax (or amid or amin)
 		double t;
 		t = pt.dot(ev0) / ev0.norm();
 		if (t < tMin[0])
@@ -203,8 +203,30 @@ bool OBBNode::in_box(const Vector3d & source) const
 	return in_box;
 }
 
-bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const 
+bool OBBNode::intersect_box2(const Vector3d & source, const Vector3d & dir) const {
+	MatrixXd cornerz(8, 3);
+	cornerz.row(0) = this->box.row(3);
+	cornerz.row(1) = this->box.row(3) + this->box.row(0);
+	cornerz.row(2) = this->box.row(3) + this->box.row(1);
+	cornerz.row(3) = this->box.row(3) + this->box.row(2);
+	cornerz.row(4) = this->box.row(3) + this->box.row(0) + this->box.row(1);
+	cornerz.row(5) = this->box.row(3) + this->box.row(0) + this->box.row(2);
+	cornerz.row(6) = this->box.row(3) + this->box.row(1) + this->box.row(2);
+	cornerz.row(7) = this->box.row(3) + this->box.row(0) + this->box.row(1) + this->box.row(2);
+
+	for (int i = 0; i < 8; ++i) {
+		double t = (cornerz.row(i) - source).dot(dir) / dir.norm();
+		if (this->in_box(source + t * dir)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const
 {
+	cout << "in intersect_box" << endl;
 	// From Geometric tools for computer graphics, p. 632.
 	// Can be modified for the corner/side representation, but I am running out of time.
 	// Create the same representation as used in GTCG (book above)
@@ -218,8 +240,8 @@ bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const
 	Vector3d dirN = dir / dir.norm();
 
 	double tNear = -DBL_MAX;
-	double tFar = DBL_MAX; 
-	double r,s, t0, t1;
+	double tFar = DBL_MAX;
+	double r, s, t0, t1;
 	for (int i = 0; i < 3; ++i) { // Check for ray parallel to planes
 		if (abs(dirN.dot(axis.row(i)) < numeric_limits<double>::epsilon())) {
 			// Ray parallel to planes
@@ -266,34 +288,81 @@ bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const
 	return true;
 }
 
+void OBBNode::viz_tree(MatrixXd & VB, MatrixXi & FB, int level) {
+
+	MatrixXd V(8, 3);
+	MatrixXi F(12, 3);
+	Vector3d corner = this->right->right->box.row(3);
+	Vector3d side0 = this->right->right->box.row(0);
+	Vector3d side1 = this->right->right->box.row(1);
+	Vector3d side2 = this->right->right->box.row(2);
+	V.row(0) = corner.transpose();
+	V.row(1) = corner.transpose() + side0.transpose();
+	V.row(2) = corner.transpose() + side1.transpose();
+	V.row(3) = corner.transpose() + side2.transpose();
+	V.row(4) = corner.transpose() + side0.transpose() + side1.transpose();
+	V.row(5) = corner.transpose() + side0.transpose() + side2.transpose();
+	V.row(6) = corner.transpose() + side1.transpose() + side2.transpose();
+	V.row(7) = corner.transpose() + side0.transpose() + side1.transpose() + side2.transpose();
+
+	F << 0, 2, 1,
+		2, 4, 1,
+		0, 3, 6,
+		2, 0, 6,
+		3, 5, 7,
+		6, 3, 7,
+		5, 1, 4,
+		7, 5, 4,
+		0, 5, 3,
+		0, 1, 5,
+		7, 4, 2,
+		6, 7, 2;
+
+	//MatrixXd VB;
+	MatrixXd tempV(VB.rows() + 8,3);
+	MatrixXi tempF(VB.rows() + 12,3);
+	tempV << VB,
+		V;
+	//MatrixXi FB;
+	tempF << FB,
+		(F.array() + VB.rows());
+	VB = tempV;
+	FB = tempF;
+
+}
 
 vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
-	vector<int> cat_out; //concatenate by recurrence
-	//if (this->is_leaf()) {
-	//	if (this->in_box(source)) { //if the source ppt is in the obb, then we are in the "mother" obb
-	//		vector<int> empty;
-	//		return empty;
-	//	}
-	//	else {
-	//		//check wether ray intersects the obb
-	//		vector<int> sphere_list;
-	//		//return a sphere (list)
-	//		return sphere_list;
-	//	}
-	//}
-	//else {
-	//	//if source is in left
-	//	this->left->ray_intersect()
-	//	//if source is in right
-	//	this->right->ray_intersect()
-	//}
-	////if line intersects
-	//this->box;
-	////return sphere index list
-	////
+	cout << "in ray_intersect" << endl;
+	cout << "is leaf " << this->is_leaf() << endl;
+	if (this->is_leaf()) {
+		cout << "in is_leaf" << endl;
+		if (this->in_box(source)) { //if the source ppt is in the obb, then we are in the "mother" obb
+			vector<int> empty;
+			return empty;
+		}
+		else {
+			//From the recurrence below, we know that this->intersect_box(source, dir) returns true
+			//vector<int> sphere_list;
+			//return sphere_list;
+			return this->idx;
+		}
+	}
+	else {
+		cout << "not in is_leaf" << endl;
 
-	////do not return intersections with spheres in its own obb
-	//
-	vector<int> pt_list;
-	return pt_list;
+		vector<int> cat_out; //concatenate recursively
+		cout << "left intersect_box true" << this->left->intersect_box(source, dir) << endl;
+		cout << "right intersect_box true" << this->right->intersect_box(source, dir) << endl;
+
+		if (this->left->intersect_box(source, dir)) { //<========= Recursion Left
+			vector<int> temp = this->left->ray_intersect(source, dir);
+			cat_out.insert(std::end(cat_out), std::begin(temp), std::end(temp));
+		}
+		if (this->right->intersect_box(source, dir)) { //<========= Recursion Right
+			cout << "right intersect_box true" << endl;
+			vector<int> temp = this->right->ray_intersect(source, dir);
+			cat_out.insert(std::end(cat_out), std::begin(temp), std::end(temp));
+		}
+		return cat_out;
+	}
 }

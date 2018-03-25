@@ -7,6 +7,27 @@ fsdf.cpp(20): warning C4267: '=': conversion from 'size_t' to 'int', possible lo
 fsdf.cpp(101): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 fsdf.cpp(109): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 fsdf.cpp(152): warning C4018: '<': signed/unsigned mismatch
+c:\eigen\eigen\src/Core/CwiseBinaryOp.h(109): error C2338: YOU_MIXED_MATRICES_OF_DIFFERENT_SIZES
+  c:\eigen\eigen\src/Core/CwiseBinaryOp.h(104): note: while compiling class template member function 'Eigen::CwiseBinaryOp<Eigen::internal::scalar_difference_op<double,_Scalar>,const Derived,const Eigen::Matrix<_Scalar,3,1,0,3,1>>::CwiseBinaryOp(const Eigen::Block<Eigen::Matrix<_Scalar,-1,-1,0,-1,-1>,1,-1,false> &,const Eigen::Matrix<_Scalar,3,1,0,3,1> &,const BinaryOp &)'
+          with
+          [
+              _Scalar=double,
+              Derived=Eigen::Block<Eigen::Matrix<double,-1,-1,0,-1,-1>,1,-1,false>,
+              BinaryOp=Eigen::internal::scalar_difference_op<double,double>
+          ]
+  c:\eigen\eigen\src\core\../plugins/CommonCwiseBinaryOps.h(19): note: see reference to function template instantiation 'Eigen::CwiseBinaryOp<Eigen::internal::scalar_difference_op<double,_Scalar>,const Derived,const Eigen::Matrix<_Scalar,3,1,0,3,1>>::CwiseBinaryOp(const Eigen::Block<Eigen::Matrix<_Scalar,-1,-1,0,-1,-1>,1,-1,false> &,const Eigen::Matrix<_Scalar,3,1,0,3,1> &,const BinaryOp &)' being compiled
+          with
+          [
+              _Scalar=double,
+              Derived=Eigen::Block<Eigen::Matrix<double,-1,-1,0,-1,-1>,1,-1,false>,
+              BinaryOp=Eigen::internal::scalar_difference_op<double,double>
+          ]
+  fsdf.cpp(218): note: see reference to class template instantiation 'Eigen::CwiseBinaryOp<Eigen::internal::scalar_difference_op<double,_Scalar>,const Derived,const Eigen::Matrix<_Scalar,3,1,0,3,1>>' being compiled
+          with
+          [
+              _Scalar=double,
+              Derived=Eigen::Block<Eigen::Matrix<double,-1,-1,0,-1,-1>,1,-1,false>
+          ]
   main.cpp
 c:\libigl-master\include\igl\opengl\bind_vertex_attrib_array.cpp(21): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLint', possible loss of data
 c:\libigl-master\include\igl\opengl\MeshGL.cpp(144): warning C4244: 'argument': conversion from 'Eigen::Index' to 'GLsizei', possible loss of data
@@ -335,8 +356,3 @@ c:\libigl-master\include\igl\colormap.cpp(1359): warning C4244: 'initializing': 
               Derived=Eigen::Matrix<double,-1,-1,0,-1,-1>
           ]
 c:\libigl-master\include\igl\colormap.cpp(1360): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
-  Generating code
-  All 6393 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe
