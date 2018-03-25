@@ -203,37 +203,97 @@ bool OBBNode::in_box(const Vector3d & source) const
 	return in_box;
 }
 
-vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
-	vector<int> cat_out;
-	if (this->is_leaf()) {
-		Vector3d corner = this->box.row(3);
-		bool in_box = true;
-		for (int i = 0; i < 3; ++i) { //the three sides
-			double t = (source - corner).dot(box.row(i)) / box.row(i).norm();
-			if (t < 0 || t > 1) in_box = false;
+bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const 
+{
+	// From Geometric tools for computer graphics, p. 632.
+	// Can be modified for the corner/side representation, but I am running out of time.
+	// Create the same representation as used in GTCG (book above)
+	Vector3d center = this->box.row(4) + (this->box.row(0) + this->box.row(1) + this->box.row(2)) / 2;
+	Vector3d halves;
+	halves << this->box.row(0).norm() / 2, this->box.row(1).norm() / 2, this->box.row(2).norm() / 2;
+	MatrixXd axis(3, 3);
+	axis.row(0) = this->box.row(0) / this->box.row(0).norm();
+	axis.row(1) = this->box.row(1) / this->box.row(1).norm();
+	axis.row(2) = this->box.row(2) / this->box.row(2).norm();
+	Vector3d dirN = dir / dir.norm();
+
+	double tNear = -DBL_MAX;
+	double tFar = DBL_MAX; 
+	double r,s, t0, t1;
+	for (int i = 0; i < 3; ++i) { // Check for ray parallel to planes
+		if (abs(dirN.dot(axis.row(i)) < numeric_limits<double>::epsilon())) {
+			// Ray parallel to planes
+			r = axis.row(i).dot(center - source);
+			if (-r - halves[i] > 0 || -r + halves[i] > 0) {
+				// No intersection
+				return false;
+			}
 		}
-		if (in_box) { //if the source ppt is in the obb, then we are in the "mother" obb
-			vector<int> empty;
-			return empty;
+		r = axis.row(i).dot(center - source);
+		s = axis.row(i).dot(dirN);
+		// Ray not parallel to planes, so find parameters of intersections
+		t0 = (r + halves[i]) / s;
+		t1 = (r - halves[i]) / s;
+		// Check ordering
+		if (t0 > t1) {
+			// Swap them
+			double tmp = t0;
+			t0 = t1;
+			t1 = tmp;
 		}
-		else {
-			vector<int> sphere_list;
-			return sphere_list;
+		// Compare with current values
+		if (t0 > tNear) {
+			tNear = t0;
 		}
+		if (t1 < tFar) {
+			tFar = t1;
+		}
+		// Check if ray misses entirely
+		if (tNear > tFar) {
+			return false;
+		}
+		if (tFar < 0) {
+			return false;
+		}
+	}
+	// Box definitely intersected
+	if (tNear > 0) {
+		double tIntersect = tNear;
 	}
 	else {
-		//if source is in left
-		this->left->ray_intersect()
-		//if source is in right
-		this->right->ray_intersect()
+		double tIntersect = tFar;
 	}
-	//if line intersects
-	this->box;
-	//return sphere index list
-	//
+	return true;
+}
 
-	//do not return intersections with spheres in its own obb
-	
+
+vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
+	vector<int> cat_out; //concatenate by recurrence
+	//if (this->is_leaf()) {
+	//	if (this->in_box(source)) { //if the source ppt is in the obb, then we are in the "mother" obb
+	//		vector<int> empty;
+	//		return empty;
+	//	}
+	//	else {
+	//		//check wether ray intersects the obb
+	//		vector<int> sphere_list;
+	//		//return a sphere (list)
+	//		return sphere_list;
+	//	}
+	//}
+	//else {
+	//	//if source is in left
+	//	this->left->ray_intersect()
+	//	//if source is in right
+	//	this->right->ray_intersect()
+	//}
+	////if line intersects
+	//this->box;
+	////return sphere index list
+	////
+
+	////do not return intersections with spheres in its own obb
+	//
 	vector<int> pt_list;
 	return pt_list;
 }
