@@ -204,7 +204,8 @@ bool OBBNode::in_box(const Vector3d & source) const
 	double wp1 = (this->box.row(2)).dot(this->box.row(3));
 	double wp2 = (this->box.row(2)).dot(this->box.row(3) + this->box.row(2));
 
-	if (up1 <= ux && ux <= up2 && vp1 <= vx && vx <= vp2 && wp1 <= wx && wx <= wp2) {
+	double ep = 0.00000001;
+	if (up1 - ep <= ux && ux <= up2 + ep && vp1 - ep <= vx && vx <= vp2 + ep && wp1 - ep <= wx && wx <= wp2 + ep) {
 		return true;
 	}
 	else {
@@ -247,17 +248,35 @@ vector<int> OBBNode::validate() const {
 	}
 }
 
+vector<int> OBBNode::obb_nbh(const Vector3d & source) const {
+	if (this->is_leaf()) {
+		return this->idx;
+	}
+	else {
+		vector<int> out;
+		if (this->left->in_box(source)) { //<========= Recursion Left
+			vector<int> temp = this->left->obb_nbh(source);
+			out.insert(end(out), begin(temp), end(temp));
+		}
+		if (this->right->in_box(source)) { //<========= Recursion Right
+			vector<int> temp = this->right->obb_nbh(source);
+			out.insert(end(out), begin(temp), end(temp));
+		}
+		return out;
+	}
+};
+
 vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
 	if (this->is_leaf()) {
 		return this->idx;
 	}
 	else {
 		vector<int> out; 
-		if (this->left->intersect_box(source, dir)) { //<========= Recursion Left
+		if (this->left->in_box(source)) { //<========= Recursion Left
 			vector<int> temp = this->left->ray_intersect(source, dir);
 			out.insert(end(out), begin(temp), end(temp));
 		}
-		if (this->right->intersect_box(source, dir)) { //<========= Recursion Right
+		if (this->right->in_box(source)) { //<========= Recursion Right
 			vector<int> temp = this->right->ray_intersect(source, dir);
 			out.insert(end(out), begin(temp), end(temp));
 		}
