@@ -337,6 +337,6 @@ c:\libigl-master\include\igl\colormap.cpp(1359): warning C4244: 'initializing': 
 c:\libigl-master\include\igl\colormap.cpp(1360): warning C4244: 'initializing': conversion from 'double' to 'unsigned int', possible loss of data
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
   Generating code
-  All 6767 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 6733 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   FSDF.vcxproj -> C:\Users\Adrian\Documents\GitHub\FSDF\FSDF\x64\Release\FSDF.exe

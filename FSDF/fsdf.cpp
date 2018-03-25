@@ -232,12 +232,28 @@ bool OBBNode::intersect_box(const Vector3d & source, const Vector3d & dir) const
 	return false;
 }
 
+vector<int> OBBNode::validate() const {
+	if (this->is_leaf()) {
+		return this->idx;
+	}
+	else {
+		vector<int> out;
+		vector<int> temp;
+		temp = this->left->validate();  //<========= Recursion Left
+		out.insert(std::end(out), std::begin(temp), std::end(temp));
+		temp = this->right->validate(); //<========= Recursion Right
+		out.insert(std::end(out), std::begin(temp), std::end(temp));
+		return out;
+	}
+}
+
+
 vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
-	cout << "in ray_intersect" << endl;
-	cout << "is leaf " << this->is_leaf() << endl;
+	cout << "idx length " << this->idx.size() << endl;
 	if (this->is_leaf()) {
 		cout << "in is_leaf" << endl;
 		if (this->in_box(source)) { //if the source ppt is in the obb, then we are in the "mother" obb
+			cout << "in box true" << endl;
 			vector<int> empty;
 			return empty;
 		}
@@ -245,22 +261,21 @@ vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir
 			//From the recurrence below, we know that this->intersect_box(source, dir) returns true
 			//vector<int> sphere_list;
 			//return sphere_list;
+			cout << "size of return " << this->idx.size() << endl;
 			return this->idx;
 		}
 	}
 	else {
-		cout << "not in is_leaf" << endl;
-
 		vector<int> cat_out; //concatenate recursively
-		cout << "left intersect_box true" << this->left->intersect_box(source, dir) << endl;
-		cout << "right intersect_box true" << this->right->intersect_box(source, dir) << endl;
-
 		if (this->left->intersect_box(source, dir)) { //<========= Recursion Left
+			cout << "recursion left" << endl;
+			cout << "depth = " << this->left->depth << endl;
 			vector<int> temp = this->left->ray_intersect(source, dir);
 			cat_out.insert(std::end(cat_out), std::begin(temp), std::end(temp));
 		}
 		if (this->right->intersect_box(source, dir)) { //<========= Recursion Right
-			cout << "right intersect_box true" << endl;
+			cout << "recursion right" << endl;
+			cout << "depth = " << this->right->depth << endl;
 			vector<int> temp = this->right->ray_intersect(source, dir);
 			cat_out.insert(std::end(cat_out), std::begin(temp), std::end(temp));
 		}

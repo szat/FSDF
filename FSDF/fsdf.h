@@ -24,9 +24,11 @@ private:
 	int longest_side; //along which side it was split
 	MatrixXd box; //5 x 3
 
+
+public:
 	unique_ptr<OBBNode> left;
 	unique_ptr<OBBNode> right;
-public:
+
 	// Special member functions, move semantic only
 	OBBNode(MatrixXd & vertices, MatrixXd & normals);
 	OBBNode(const OBBNode& other) = delete;
@@ -45,4 +47,6 @@ public:
 	bool in_box(const Vector3d & source) const;
 	vector<int> ray_intersect(const Vector3d & source, const Vector3d & dir) const;
 	bool intersect_box(const Vector3d & source, const Vector3d & dir) const;
+	vector<int> validate() const;
+
 };
