@@ -291,37 +291,37 @@ vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir
 }
 
 MatrixXd OBBNode::query() const {
-	double radius = this->param_max_side;
+	double radius = 10 * this->param_max_side;
 	VectorXd out(this->vertices.rows());
 	for (size_t i = 0; i < vertices.rows(); ++i) {
 		double SDF = DBL_MAX;
 		Vector3d pt = this->vertices.row(i);
 		Vector3d d = -this->normals.row(i)/this->normals.row(i).norm(); //INVERT THE NORMALS
 		vector<int> indices = this->ray_intersect(pt, d);
-		for (size_t j = 0; i < indices.size(); ++j) {
+		for (size_t j = 0; j < indices.size(); ++j) {
 			Vector3d C = this->vertices.row(indices.at(j));
 			double discriminant = (d.dot(pt - C))*(d.dot(pt - C)) - 4 * ((pt - C).dot(pt - C)-radius*radius); 
 			if (discriminant == 0) { //one intersection
 				double t = (-d.dot(pt - C)) / 2;
-				if (t < SDF) {
+				if (t < SDF && t > 0) {
 					SDF = t;
 				}
 			}
 			if (discriminant > 0) { //two intersections
 				double t = (-d.dot(pt - C) + sqrt(discriminant)) / 2;
-				if (t < SDF) {
+				if (t < SDF && t > 0) {
 					SDF = t;
 				}
 				t = (-d.dot(pt - C) - sqrt(discriminant)) / 2;
-				if (t < SDF) {
+				if (t < SDF && t > 0) {
 					SDF = t;
 				}
 			}
 		}
 		if (SDF == DBL_MAX) {
-			SDF == 0;
+			SDF = 0;
 		}
-		SDF = SDF + 2 * radius; //Instead of subtracting the radius, we add the diameter.
+		//Not the exact right formula, I just wanted to see what happeend without the offset, just the min
 		out[i] = SDF;
 	}
 	return out;
