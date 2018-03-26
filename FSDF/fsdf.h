@@ -49,4 +49,5 @@ public:
 	bool intersect_box(const Vector3d & source, const Vector3d & dir) const;
 	vector<int> validate() const;
 	vector<int> obb_nbh(const Vector3d & source) const;
+	MatrixXd query() const;
 };

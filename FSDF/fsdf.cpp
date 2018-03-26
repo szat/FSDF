@@ -204,7 +204,7 @@ bool OBBNode::in_box(const Vector3d & source) const
 	double wp1 = (this->box.row(2)).dot(this->box.row(3));
 	double wp2 = (this->box.row(2)).dot(this->box.row(3) + this->box.row(2));
 
-	double ep = 0.00000001;
+	double ep = 0.001; //relax <-- important, otherwise some rays "slip through"
 	if (up1 - ep <= ux && ux <= up2 + ep && vp1 - ep <= vx && vx <= vp2 + ep && wp1 - ep <= wx && wx <= wp2 + ep) {
 		return true;
 	}
@@ -268,18 +268,61 @@ vector<int> OBBNode::obb_nbh(const Vector3d & source) const {
 
 vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir) const {
 	if (this->is_leaf()) {
-		return this->idx;
+		if (false == this->in_box(source)) {  //we don't want the "mother obb", obv this is a problem
+			return this->idx;
+		}
+		else {
+			vector<int> empty;
+			return empty;
+		}
 	}
 	else {
 		vector<int> out; 
-		if (this->left->in_box(source)) { //<========= Recursion Left
+		if (this->left->intersect_box(source, dir)) { //<========= Recursion Left
 			vector<int> temp = this->left->ray_intersect(source, dir);
 			out.insert(end(out), begin(temp), end(temp));
 		}
-		if (this->right->in_box(source)) { //<========= Recursion Right
+		if (this->right->intersect_box(source, dir)) { //<========= Recursion Right
 			vector<int> temp = this->right->ray_intersect(source, dir);
 			out.insert(end(out), begin(temp), end(temp));
 		}
 		return out;
 	}
+}
+
+MatrixXd OBBNode::query() const {
+	double radius = this->param_max_side;
+	VectorXd out(this->vertices.rows());
+	for (size_t i = 0; i < vertices.rows(); ++i) {
+		double SDF = DBL_MAX;
+		Vector3d pt = this->vertices.row(i);
+		Vector3d d = -this->normals.row(i)/this->normals.row(i).norm(); //INVERT THE NORMALS
+		vector<int> indices = this->ray_intersect(pt, d);
+		for (size_t j = 0; i < indices.size(); ++j) {
+			Vector3d C = this->vertices.row(indices.at(j));
+			double discriminant = (d.dot(pt - C))*(d.dot(pt - C)) - 4 * ((pt - C).dot(pt - C)-radius*radius); 
+			if (discriminant == 0) { //one intersection
+				double t = (-d.dot(pt - C)) / 2;
+				if (t < SDF) {
+					SDF = t;
+				}
+			}
+			if (discriminant > 0) { //two intersections
+				double t = (-d.dot(pt - C) + sqrt(discriminant)) / 2;
+				if (t < SDF) {
+					SDF = t;
+				}
+				t = (-d.dot(pt - C) - sqrt(discriminant)) / 2;
+				if (t < SDF) {
+					SDF = t;
+				}
+			}
+		}
+		if (SDF == DBL_MAX) {
+			SDF == 0;
+		}
+		SDF = SDF + 2 * radius; //Instead of subtracting the radius, we add the diameter.
+		out[i] = SDF;
+	}
+	return out;
 }
