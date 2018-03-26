@@ -291,12 +291,12 @@ vector<int> OBBNode::ray_intersect(const Vector3d & source, const Vector3d & dir
 }
 
 MatrixXd OBBNode::query() const {
-	double radius = 10 * this->param_max_side;
+	double radius = 100 * this->param_max_side;
 	VectorXd out(this->vertices.rows());
 	for (size_t i = 0; i < vertices.rows(); ++i) {
 		double SDF = DBL_MAX;
 		Vector3d pt = this->vertices.row(i);
-		Vector3d d = -this->normals.row(i)/this->normals.row(i).norm(); //INVERT THE NORMALS
+		Vector3d d = this->normals.row(i)/this->normals.row(i).norm(); //INVERT THE NORMALS
 		vector<int> indices = this->ray_intersect(pt, d);
 		for (size_t j = 0; j < indices.size(); ++j) {
 			Vector3d C = this->vertices.row(indices.at(j));
@@ -321,7 +321,9 @@ MatrixXd OBBNode::query() const {
 		if (SDF == DBL_MAX) {
 			SDF = 0;
 		}
-		//Not the exact right formula, I just wanted to see what happeend without the offset, just the min
+		else {
+			SDF + 2 * radius;
+		}
 		out[i] = SDF;
 	}
 	return out;

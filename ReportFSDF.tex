@@ -1,0 +1,333 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+\usepackage[width=15.00cm, height=20.00cm]{geometry}
+
+\author{{\Large	 Adrian Szatmari}}
+\title{{\huge Scale-Invariant Fast Global Registration}}
+
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+\begin{abstract}\normalsize
+Histogram 3D feature descriptors are used to find candidate matches that cover the surfaces. The \textit{invFPFH} is created, being a scale invariant version of the FPFH feature descriptor used in Fast Global Registration (FGR). 
+
+A single objective function is optimized to align the surfaces and disable false matches. The optimization achieves tight alignment. No correspondence updates or closest point queries are performed in the inner loop, thus significantly cutting running time.
+\end{abstract}
+
+\tableofcontents
+
+\newpage 
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\section{Introduction}
+
+Different users and customers will likely provide 3D scans through various means. For instance, the 3D scan provided does not have the same scale as that of the 3D model. Different scans will have different properties, such as sampling density \cite{gelfand2005robust,granger2002multi,meer1991robust}, relative scale \cite{lin2013scale}, sampling noise and outliers \cite{zhou2016fast,chetverikov2005robust}, relative initial position \cite{zhou2016fast}, or only sections of objects \cite{mellado2014super}. Whether to create 3D models or to register existing 3D models to scans, an industrial strength pipeline is necessary. 
+
+Aligning two sets $P = \{p_i \in R^3, i \in N_i\}$ and $Q = \{q_j \in R^3, j \in N_j\}$ is not an easy task. As of yet, no method has been completely successful in addressing all of the concerns at once. 
+
+Fast Global Registration \cite{zhou2016fast}, from 2016, distinguishes itself from the rest. Most methods, with some exceptions \cite{chen2017fast,sehgal2010real,hoppe1992surface,li2017improved}, work by first establishing a set of most likely correspondences between $P$ and $Q$. Let's write a correspondence as $(p,q)$. Subsequently, they try to minimize
+\[E(T) = \sum_{(p,q)} \|p - Tq\|\]
+or an equivalent objective function \cite{chen1992object,eggert1997estimating}. FGR does not require correspondence updates or closest-point queries in the minimization loop, saving a lot of computation. Moreover, the authors claim that FGR requires \textit{no particular initial position} and that it is \textit{robust to noise}. Unfortunately, FGR does not find the relative scaling factor between $P$ and $Q$ and it is not scale invariant. 
+
+In this report, preliminary steps towards scale invariance are taken for FGR. In Section \ref{sec2}, the original pipeline is presented; in Section \ref{sec3}, it is shown that the method is not scale invariant and some remedies are suggested; in Section \ref{sec4}, the processing of the data is presented as well as the challenges that were faced. In Section \ref{sec5}, a future work flow is suggested as well as some problems dual to point registration. 
+
+\section{Fast Global Registration}\label{sec2}
+
+In FGR, the putative matches are found through the popular FPFH descriptors and then by applying some filters; the optimization is done through a Black-Rangarajan decomposition of the objective function. 
+
+\subsection{FPFH Descriptors}
+
+Point descriptors are generally histograms that bin some set of features describing the neighborhood of a point. Scientists often talk of global versus local descriptors, which usually addresses the size of the neighborhood. The computation of local descriptors is typically embarrassingly parallel. Examples are SIFT 3D, NARF, Spin Images, FPFH, and many others \cite{Overview51:online,hansch2014comparison,rusu2009fast}. Currently, the most popular seems to be FPFH \cite{rusu2009fast}, which captures the curvature of a set of points in 3D. 
+
+Let $p_i, p_j \in P$, with corresponding estimated surface normals $n_i$ and $n_j$, and let $u = n_i, v = (p_j - p_i) \times u$, and $w = u \times v$. Let $SPF(p_i)$ be the histogram of the following three features:
+\begin{align}\label{features}
+\begin{split}
+\alpha &= v \cdot n_j, \\
+\phi &= (u \cdot (p_j - p_i))/\|p_j - p_i\|,\\
+\theta &= \arctan(w \cdot n_j , u \cdot n_j),
+\end{split}
+\end{align}
+with 5 bins per feature. In other words, a Kd-tree is first built for $P$, then for each point $p_i \in P$ a certain $k$-neighborhood $nbh_k(p_i)$ is selected, $\alpha_j, \phi_j, \theta_j$ are computed for $p_j \in nbh_k(p_i)$ and then binned. Therefore $SPF(p_i) = ([h_1, \ldots, h_5]_\alpha,[h_1, \ldots, h_5]_\phi,[h_1, \ldots, h_5]_\theta)$, where $[h_1, \ldots, h_5]_x$ is the histogram for $x$ with $nbh_k(p_i)$ as support.
+
+Finally $FPFH(p_i)$ is defined as a weighted mean of the $SPF(p_j)$ with $p_j \in nbh_k(p_i)$:
+\begin{equation}
+FPFH(p_i) = SPF(p_i) +  \sum_{p_j \in nbh_k(p_i)} \frac{SPF(p_j)}{k\|p_j - p_i\|}.
+\end{equation}   
+
+\subsection{Descriptor Matching}
+\begin{enumerate}
+	\item Most likely correspondences are established using $FPFH(P)$ and $FPFH(Q)$. FGR proposes to do a nearest neighbor search from $FPFH(P)$ to $FPFH(Q)$ and then vice versa. These two searches are done by building Kd-trees for both $FPFH(P)$ and $FPFH(Q)$. Note that in general $card(P) \neq card(Q)$. The authors call these initial correspondences $K_1$. 
+	
+	\item $K_1$ is first refined by the "Reciprocity Test" into $K_2$. The Reciprocity Test simply ensures that if $FPFH(p_i)$ is closest to $FPFH(q_j)$ as searched in the Kd-tree of $FPFH(Q)$, then $FPFH(q_j)$ is closest to $FPFH(p_i)$ in the Kd-tree of $FPFH(P)$. This is a good common sense requirement and it enforces the correspondences to be one-to-one. 
+	
+	\item $K_2$ is afterward refined by the "Tuple Test" into $K_3$. The Tuple Test is some sort of global coherence test. Namely for 3 randomly picked correspondence pairs  $(p_1,q_1), (p_2,q_2),(p_3,q_3) \in K_2$, the authors require the following to be true:
+	\begin{equation}
+	\tau < \frac{\|p_i-p_j\|}{\|q_i - q_j\|} < 1/\tau, \quad \tau = 0.9, \quad \forall i \neq j,
+	\end{equation}
+	and successful triples are saved in $K_3$. This set is then fed to the optimization procedure. 
+\end{enumerate}
+
+\subsection{Black-Rangarajan Decomposition}
+
+FGR minimizes the following equation for $T$:  
+\begin{equation}\label{obj4}
+E(T) = \sum_{(p,q) \in K_3} \rho (\|p - Tq\|), 
+\end{equation}
+where $\rho(x) = \frac{\mu x^2}{\mu + x^2}$ is the scaled German-McClure estimator \cite{zhou2016fast}. This estimator penalizes small residuals in the least squares sense and rapidly neutralizes outliers. Objective \ref{obj4} is hard to optimize directly, but the Black-Rangarajan duality permits the following decomposition:
+\begin{equation}
+E(T,L) = \sum_{(p,q) \in K_3} l_{p,q} \|p-Tq\|^2 + \sum_{(p,q) \in K_3} \mu (\sqrt{l_{p,q}}-1)^2,\quad L = \{l_{p,q}\}.
+\end{equation}
+In order to minimize $E(T,L)$, take the partial derivatives w.r.t. $l_{p.q}$ and solve for zero:
+\begin{equation}
+\frac{\partial E}{\partial l_{p,q}} = \|p - Tq\|^2 + \mu \frac{\sqrt{l_{p,q}}-1}{\sqrt{l_{p,q}}} = 0,
+\end{equation}
+which gives
+\begin{equation}\label{eq7}
+l_{p,q} = \left( \frac{\mu}{\mu + \|p-Tq\|^2} \right)^2.
+\end{equation}
+
+The optimization loop works by alternating between optimizing $T$ and $L = \{l_{p,q}\}$. 
+Since both optimization steps minimize the same global objective, the alternating loop converges to a minimum. When $L$ is fixed, then $T$ can be solved via the Gauss-Newton method  and a linearization of the rigid motion element in $SE(3)$. When $T$ is fixed, $L$ can be updated via Eq. \ref{eq7}. For more details on implementation or theory look into the Matlab code or into the original paper.
+
+\begin{algorithm}
+	\caption{Fast Global Registration}\label{euclid}
+	 \hspace*{\algorithmicindent} \textbf{Input}: A pair of surfaces $P$ and $Q$ \\
+	\hspace*{\algorithmicindent} \textbf{Output} Transformation $T$ that aligns $Q$ to $P$ 
+	\begin{algorithmic}[1]
+		\State Compute normals $n_P$ and $n_Q$;
+		\State Compute FPFH features $F(P)$ and $F(Q)$;
+		\State Build $K_1$ by computing nearest neighbors between $F(P)$ and $F(Q)$;
+		\State Apply "Reciprocity Test" on $K_1$ to get $K_2$;
+		\State Apply "Tuple Test" on $K_2$ to get $K_3$;
+		\State Initialize $T \leftarrow I$ and $\mu \leftarrow D^2$;
+		\While{not converged or $\mu > $ threshold}
+			\State Every four iterations, $\mu \leftarrow \mu/2$;
+			\State Compute and update $L$ using $K_3$ via Eq. \ref{eq7};
+			\State Set up the linear system for $T$ and solve it ($Ax = b$);
+			\State Update $T$;
+		\EndWhile
+		\State Verify whether $T$ aligns $Q$ to $P$
+	\end{algorithmic}
+\end{algorithm}
+
+The algorithm does not need to update $K_3$ directly. The vector $L$ acts as an indicator function for the correspondence pairs. When $l_{p,q}$ is close to 0, the pair $(p,q)$ contributes little to the optimization and when $l_{p,q}$ is close to 1 it contributes more. The authors suggest to initialize $\mu$ to the square of the diameter of the point set, and to halve it a every fourth iteration. This parameter acts as a sliding knot on the size of neighborhoods.
+\newpage
+
+\subsection{Performance}
+
+FGR's performances shine compared to other approaches.  The graphs from the paper are presented. FGR is denoted as "Ours" in the figures. Note that the citations in the figures are from the FGR paper, and thus do not correspond to the references in this report. 
+
+Here are the graphs for the behavior w.r.t. noise on synthetic data.  
+
+\begin{figure}[h]
+	\centering
+	\centerline{
+	\includegraphics[scale = 0.43]{FGR1}}
+	\caption{Controlled experiments on synthetic data. $\alpha$-recall is the fraction of tests for which a given method achieves an RMSE $< \alpha$. Higher is better. The RMSE unit is the diameter of the surface. FGR algorithm is more robust to noise and is more accurate than prior approaches.}
+	\label{fig:fgr1}
+\end{figure}
+
+Here are the performances w.r.t. to noise and the precision of the registration. 
+
+\begin{figure}[h]
+	\centering
+	\centerline{
+	\includegraphics[scale=0.43]{FGR2}}
+	\caption{Average and maximal RMSE achieved by global registration algorithms on synthetic range images with noise level $\alpha$. Maximal RMSE is the maximum among the 25 RMSE values obtained for individual pairwise registration tests. FGR outperforms other methods by a large margin when noise is present. }
+	\label{fig:fgr2}
+\end{figure}
+\newpage
+Here are the performance w.r.t. to the relative initial positioning of the point clouds.
+
+\begin{figure}[H]
+	\centering
+	\centerline{
+	\includegraphics[scale=0.43]{FGR3}}
+	\caption{Controlled comparison with local methods. Local registration algorithms are initialized with a transformation generated by adding a perturbation in rotation (left) or translation (right) to the ground-truth alignment. The plots show the mean (bold curve) and standard deviation (shaded region) of the RMSE of each method. Lower is better.}
+	\label{fig:fgr3}
+\end{figure}
+
+Finally here are some more registration statistics for FGR. 
+
+\begin{figure}[H]
+	\centering
+	\centerline{
+	\includegraphics[scale=0.43]{FGR4}}
+	\caption{Global registration results on the UWA benchmark. (a) FGR on one of the 188 tests.The scene is colored white and objects aligned to the scene have distinct colors. (b) $\alpha$-recall plot comparing our method and prior global registration algorithms. (Higher is better.)}
+	\label{fig:fgr4}
+\end{figure}
+
+In the original paper, timings are also reported. Since timings depend also on implementation, they will not be reproduced here. However, the results were all faster for FGR than for other algorithms by at least an order of magnitude. 
+
+
+\section{Scale Invariance Check}\label{sec3}
+
+FGR is not scale invariant and does not find the scaling factor in the registration. This is shown here and some remedies are suggested. 
+
+\subsection{FPFH and Normal Flips}
+
+In general, it is hard to find the orientation of estimated normals. Note that FPFH necessitates $n_P$, the set of estimated normals of $P$. For $p_i \in P$, the normal $n_{p_i}$ is computed by applying PCA onto $nbh_6(p_i)$ and then by selecting the normal as the smallest principal component. However, if $v$ is an eigenvector, then so is $-v$. The normals estimated from PCA are always ambiguous. 
+
+It is possible to get oriented normals from a mesh, which is what was done in the Section "Development History". It is also possible to orient the normals given a viewpoint of the 3D point cloud, but in the case of this data no natural viewpoint comes to mind. If $n_i \to -n_i$, then the features in Eq. \ref{features} become 
+\[\alpha \to -\alpha, \phi \to -\phi, \theta \to -\theta.\]
+It is clear that FPFH is not normal flip invariant, but it is much less clear how to solve this without a loss in descriptiveness. The problem is not tackled in this report. 
+
+\subsection{FPFH and Scale Invariance}
+
+Let $\lambda P = \{(\lambda x_i, \lambda y_i, \lambda z_i) | (x_i, y_i, z_i) = p_i \in P, \lambda > 0\}$, the scaled version of $P$. First note that the normals of $n_P$ and $n_{\lambda P}$ are the same. On the other hand $\lambda p_j - \lambda p_i = \lambda (p_j - p_i), p_j, p_i \in P$. The features $\alpha_\lambda, \psi_\lambda, \theta_\lambda$ for $\lambda P$, become
+
+\begin{align} 
+\begin{split}
+\alpha_\lambda &= ((\lambda p_j - \lambda p_i) \times u) \cdot n_j = \lambda ((p_j - p_i) \times u) \cdot n_j = \lambda \alpha, \\
+\phi_\lambda &= (u \cdot (\lambda p_j - \lambda p_i))/\|\lambda p_j - \lambda p_i\| = (u \cdot (p_j - p_i))/\|p_j - p_i\| = \phi,\\
+\theta_\lambda &= \arctan(\lambda w \cdot n_j , u \cdot n_j) = \arctan\left(\frac{\lambda w \cdot n_j}{u \cdot n_j}\right).
+\end{split}
+\end{align}
+
+The $\alpha$ features scale linearly with $\lambda$, the $\phi$ features are invariant with respect to scale. The $\theta$ features do not have a closed form with respect to $\lambda > 0$. Let's redefine $v$ as follows:
+\[
+v = \frac{p_j - p_i}{\|p_j - p_i\|} \times u,
+\]
+instead of $v = (p_j - p_i) \times u$. This will leave $u,v$, and $w$ invariant under positive scaling. Therefore, both the $\alpha$ and the $\theta$ features become scale invariant. This seemingly innocent change still produces descriptive histograms. Note  that the bin edges of FPFH need to be adjusted. This modification allows to compare point clouds at different scales while using FPFH. Call this new process \textit{invFPFH}. 
+
+\newpage 
+
+\subsection{Matching Filters}
+
+In order to build a set of putative matches, the authors of FGR propose two nearest neighbor searches followed by the Reciprocity Test and the Tuple Test. The nearest neighbor search and the Reciprocity Test both operate on the FPFH descriptors, thus they can also operate on the invFPFH descriptors. By switching from the FPFH to the invFPFH, the first two tests become scale invariant. 
+
+However, the Tuple Test is clearly not scale invariant since
+\[
+\frac{\|p_i - p_j\|}{\|q_i - q_j\|} \neq \frac{\|\lambda p_i - \lambda q_j\|}{\|q_i - q_j \|},\quad \forall \lambda \neq 0.
+\]
+A tuple that passes the test on one scale might fail on another scale. This filter cannot remain in a scale invariant version of FGR. 
+
+Note the similarity between the Tuple Test and Lowe's Ratio Test \cite{lowe1999object}. Generally speaking, Lowe's Ratio serves to filter putative matches. Let $FPFH(p_i)$ be the set of features of point $p_i$, and let $FPFH(p_{j_1})$ and $FPFH(p_{j_2})$ be the first two features closest to $FPFH(p_i)$ in feature space. Then Lowe's Ratio $\rho$ is 
+\begin{equation}
+\rho = \frac{\|FPFH(p_i) - FPFH(p_{j_1})\|}{\|FPFH(p_i) - FPFH(p_{j_2})\|}.
+\end{equation}
+If $\rho$ is smaller than a certain threshold, typically 0.8, then the correspondence $(p_i,p_{j_1})$ is deemed of good quality.  As $\rho$ operates on descriptors, having invariant feature descriptors ensure that Lowe's Ratio Test is also invariant. This is used in the current Matlab implementation. 
+
+There are other ways to match points based on their descriptors. The Earth Mover's Distance (EMD) works well with histograms and can be easily computed through the Hungarian algorithm for bipartite graph matching \cite{belongie2001shape}. This approach seems promising, although it was not explored in the current report.
+
+\subsection{Optimization Loop}
+
+The optimization loop in its current form cannot find the relative scaling factor in the final transformation $T$. However, the approach pioneered in the FGR paper seems strong enough to accommodate for that modification. Further research in that direction is necessary. 
+\newpage
+\section{Development History}\label{sec4}
+
+\subsection{Project Initialization}
+
+First I did a literature review. Second, I wanted to use the Point Cloud Library and C++, but I ran into two nasty bugs. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{errors1}
+	\caption{This was eventually solved by commenting out 3 lines in typeof-impl.hpp.}
+	\label{fig:errors1}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{errors2}
+	\caption{This was an error in the Boost library.}
+	\label{fig:errors1}
+\end{figure}
+
+Therefore, I turned to Matlab and its easy visualization tools, the plan being to implement FPFH and then FGR. 
+\newpage
+\subsection{Data Preprocessing}
+\subsubsection{Remeshing and Downsampling}
+To isolate the behavior of FGR, the 3D mesh of the chair and the point cloud data from the scan were normalized. The point cloud was downsampled with 
+\begin{lstlisting}
+	ptCloud = pcdownsample(ptCloud,'gridAverage',0.5);
+\end{lstlisting}
+which uses a block filter \cite{Downsamp90:online}. 
+
+The mesh was first upsampled with a wavelet remeshing strategy \cite{ToolboxW88:online}, giving:
+
+\begin{figure}[h!]
+	\centering
+	\centerline{
+	\includegraphics[scale = 0.4]{refinements}}
+	\caption{Successive remeshing iterations using the wavelet remeshing strategy. The precise steps are in "test-precomp.m".}
+	\label{fig:refinements}
+\end{figure}
+ and then downsampled in the same way as the point cloud, using. 
+\begin{lstlisting}
+	ptCloudMesh = ptCloud(vertices);
+	ptCloudMesh = pcdownsample(ptCloudMesh,'gridAverage',0.5);
+\end{lstlisting}
+
+\newpage
+
+\subsubsection{Normal Extraction}
+
+The FPFH descriptors need surface normals as input. As described in Section 3.1, the normals extracted with PCA were of poor quality. To solve this, the provided point cloud was first meshed using MeshLab \cite{MeshLabS73:online}. The mesh was then used to extract nice normals. 
+
+\begin{figure}[h!]
+	\centering
+	\centerline{
+	\includegraphics[scale=0.4]{normals}}
+	\caption{Note that the normals on the arm on the left are badly oriented in the first figure, but not in the second figure.}
+	\label{fig:normals}
+\end{figure}
+
+\subsection{FPFH and FGR}
+
+I have a lot of experience with histograms from my project on Shape Contexts on Github \cite{GitHubsz10:online}. Thus the implementation of FPFH was just a matter of understanding the paper. The implementation of invFPFH was more a matter of theoretical work than technical difficulty. 
+
+The implementation of FGR was done by converting the C++ code of the authors from their Github page \cite{GitHubIn69:online}. At first I made some minor conceptual mistakes, but then it went quite smoothly. 
+
+\newpage
+
+\section{Conclusion}\label{sec5}
+
+The FGR method can be split into two parts: the 3D point feature extraction and point matching; the optimization loop and solving for $T$. The main contribution of FGR is in the optimization loop. Let's posit that the results from the original paper are correct. 
+\paragraph{Needed Improvements}
+\begin{itemize}
+	\item Unclear how it behaves with changes in sampling density. 
+	\item Not yet fully scale invariant. 
+	\item Does not find the scaling factor for $T$.
+	\item Better matching routines are needed. 
+\end{itemize}
+\paragraph{Current Advantages}
+\begin{itemize}
+	\item Faster than other methods.
+	\item Noise resistant.
+	\item Initial pose resistant.  
+	\item Can handle different point clouds at once, see paper.  
+\end{itemize}
+
+The FGR framework is powerful enough to find the scaling factor in the optimization loop. Indeed, it relies on a linearization of the transformation elements in $SE(3)$, but a scaling factor could easily be added. 
+
+The point matching is where there is most room for improvement. In particular, a scale invariant and flip invariant descriptor is needed. The invFPFH takes care of scale invariance but more testing is necessary. Moreover, many papers explore the ideas of a spectral approach in order to find "persistent" points. This could be especially useful for point clouds with big holes or heterogeneous sampling. The approach was not implemented in the current project. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{persistence}
+	\caption{A spectral analysis for FPFH, from \cite{rusu2009fast}. Could be applied to invFPFH as well. Reducing the set of point prior matching improves performance and accuracy.}
+	\label{fig:persistence}
+\end{figure}
+
+Finally, the dual problem will be to find which models to align. In other words, some sort of global shape signature would have to be computed for each 3D model and then matched with the global signature of the point cloud. 
+
+%\bibliographystyle{plain}
+%\bibliography{bibfile.bib}
+
+\bibliographystyle{unsrt}
+%\bibliographystyle{plain}  
+\bibliography{bibfile}
+
+
+\end{document}
